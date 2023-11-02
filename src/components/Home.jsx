@@ -83,6 +83,8 @@ function Home() {
                         </div>
                     </Options>
 
+                    <a href={'/'}>i have no idea what to choose!</a>
+
                 </HomeContentRightSide>
 
             </HomeContent>
