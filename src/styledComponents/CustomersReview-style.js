@@ -31,16 +31,23 @@ export const ComentsContainer = styled.div`
   transform: translate(-50%, -50%);
 `
 export const ArrowBtn = styled.div`
-  width: 45px;
-  height: 45px;
+  width: 30px;
+  height: 30px;
   background-color: rgba(255, 255, 255, 0.20);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: 20px;
   color: rgba(239, 239, 239, 1);
-  margin: 0 3.5rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  @media (min-width: 620px) {
+    margin: 0 3.5rem;
+    width: 45px;
+    height: 45px;
+    font-size: 24px;
+  }
 `
 export const Coment = styled.div`
   border-radius: 18px;
@@ -48,7 +55,7 @@ export const Coment = styled.div`
   background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(5px);
   padding: 1rem;
-
+  min-height: 232px;
   & > img {
     width: 90px;
     height: 90px;
@@ -65,8 +72,9 @@ export const Coment = styled.div`
     border-radius: 19px;
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
-    max-width: 420px;
-    padding: 3.5rem 2rem;
+    width: 250px;
+    padding: 3rem 1rem 0;
+    min-height: 200px;
   }
 
   & > div.comments-background > h6 {
@@ -79,5 +87,16 @@ export const Coment = styled.div`
   & > div.comments-background > div {
     color: rgba(69, 69, 69, 1);
     font-size: .9rem;
+  }
+  &>div.comments-background > div.stars>span{
+    display: inline-block;
+    margin: 1rem .3rem ;
+  }
+  @media (min-width: 620px) {
+    & > div.comments-background {
+      width: 420px;
+      padding: 3.5rem 2rem 0;
+      min-height: 200px;
+    }
   }
 `

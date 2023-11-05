@@ -33,3 +33,6 @@
 .Irish_font{
     font-family: 'Irish Grover',sans-serif;
 }
+.checked {
+    color: orange;
+}

@@ -9,7 +9,7 @@ function Questions() {
                 <div className={'all_questions_container'}>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>
@@ -17,7 +17,7 @@ function Questions() {
                     </Question>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>
@@ -25,7 +25,7 @@ function Questions() {
                     </Question>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>
@@ -33,7 +33,7 @@ function Questions() {
                     </Question>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>
@@ -41,7 +41,7 @@ function Questions() {
                     </Question>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>
@@ -49,7 +49,7 @@ function Questions() {
                     </Question>
                     <Question>
                         <div className={'number'}>1</div>
-                        <div>
+                        <div className={'text'}>
                             <h6 className={'question'}>How Long Does A Booking Take?</h6>
                             <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor.</p>

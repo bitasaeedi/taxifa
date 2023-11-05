@@ -3,38 +3,67 @@ import styled from "styled-components";
 export const ServicesContainer = styled.div`
   background-image: ${(props) => props.image};
   width: 100%;
-  height: 540px;
-  background-size: 100% 540px;
+  height:fit-content;
+  background-size: 100% 950px;
   position: relative;
+padding-bottom: 2rem;
   & > h2 {
     width: 100%;
-    position: absolute;
-    top: 3rem;
-    font-size: 2rem;
+    position: relative;
+    top: 2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     text-align: center;
     color: #FFF;
   }
+
+  @media (min-width: 620px) {
+    height: 540px;
+    background-size: 100% 540px;
+    & > h2 {
+      font-size: 2rem;
+      top: 3rem;
+    }
+  }
 `
+
 export const Shadow = styled.div`
   background-color: rgba(0, 0, 0, 0.71);
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `
 export const AllServicesContainer = styled.div`
-  display: flex;
+  display: grid;
   justify-content: space-between;
-  position: absolute;  
-  top: 10rem;
-  margin: 0 7.5rem;
+  grid-template-columns: 1fr;
+  position: relative;
+  top: 0;
+  margin: 4rem 1rem 0;
+  gap: 15px;
+  @media (min-width: 620px) {
+    display: flex;
+    margin: 0 7.5rem;
+    grid-template-columns: 1fr 1fr;
+    top: 10rem;
+    gap: 10px;
+     }
 `
 export const Service = styled.div`
-  width: 21.5%;
+  width: 100%;
   border-radius: 10px;
   border: 0.5px solid #2CB4AA;
-  background: lightgray -59 0px / 167% 125% no-repeat, linear-gradient(180deg, rgba(52, 58, 66, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: lightgray -93px 0 / 168% 125% no-repeat, -webkit-gradient(linear, left top, left bottom, from(rgba(52, 58, 66, 0.1)), to(rgba(0, 0, 0, 0.1)));
+  background: lightgray -93px 0 / 168% 125% no-repeat, -o-linear-gradient(top, rgba(52, 58, 66, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  background: lightgray -93px 0 / 168% 125% no-repeat, linear-gradient(180deg, rgba(52, 58, 66, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  -webkit-box-shadow: 4px 4px 25px 0 rgba(0, 0, 0, 0.6);
+  box-shadow: 4px 4px 25px 0 rgba(0, 0, 0, 0.6);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  padding: 2.5rem 1.5rem 1.5rem;
+  padding: 1.5rem 1.2rem 1.2rem;
+
   & > h6 {
     color: #2CB4AA;
     font-size: 1.1rem;
@@ -45,7 +74,7 @@ export const Service = styled.div`
     color: #F1F1F1;
     font-size: 1.05rem;
     font-weight: 300;
-    margin: 2.5rem 0 3.7rem;
+    margin: 1.5rem 0 2.2rem;
   }
 
   & > a {
@@ -53,5 +82,12 @@ export const Service = styled.div`
     font-size: 1.05rem;
     text-decoration: none;
   }
+  @media (min-width: 620px) {
+    padding: 2.5rem 1.5rem 1.5rem;
+    width: 21.5%;
+    & > p {
+      margin: 2.5rem 0 3.7rem;
+    }
+     }
 
 `

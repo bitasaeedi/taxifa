@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    Attributes,
-    Descript,
-    DescriptionContainer,
-    DescriptionLeftSide,
+    Attributes, Descript, DescriptionContainer, DescriptionLeftSide,
     DescriptionRightSide, Infos
 } from "../styledComponents/Description-style";
+import FsLightbox from "fslightbox-react";
 
-function Description(props) {
+function Description() {
+    const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
+
+    function openLightbox(sourceIndex) {
+        setLightboxController({toggler: !lightboxController.toggler, sourceIndex});
+    }
+
     return (
         <>
             <DescriptionContainer>
@@ -75,13 +79,24 @@ function Description(props) {
                     {/* right side */}
                     <DescriptionRightSide>
                         <div className="images">
-                            <img alt='car' src={require('../public/des1.png')}/>
-                            <img alt='car' src={require('../public/des2.png')}/>
-                            <img alt='car' src={require('../public/des3.png')}/>
-                            <img alt='car' src={require('../public/des4.png')}/>
+                            <img alt='car' src={require('../public/des1.png')} onClick={() => openLightbox(0)}/>
+                            <img alt='car' src={require('../public/des2.png')} onClick={() => openLightbox(1)}/>
+                            <img alt='car' src={require('../public/des3.png')} onClick={() => openLightbox(2)}/>
+                            <img alt='car' src={require('../public/des4.png')} onClick={() => openLightbox(3)}/>
                         </div>
-                        <div>brows gallery</div>
+                        <div onClick={() => openLightbox(0)}>brows gallery</div>
                     </DescriptionRightSide>
+
+                    <FsLightbox
+                        toggler={lightboxController.toggler}
+                        sources={[
+                            require('../public/des1.png'),
+                            require('../public/des2.png'),
+                            require('../public/des3.png'),
+                            require('../public/des4.png')
+                        ]}
+                        sourceIndex={lightboxController.sourceIndex}
+                    />
 
                 </Descript>
 

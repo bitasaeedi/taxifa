@@ -5,6 +5,8 @@ import Description from "./components/description";
 import ServicesInfo from "./components/ServicesInfo";
 import Questions from "./components/Questions";
 import CustomersReview from "./components/CustomersReview";
+import ContactUs from "./components/contactUs";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -14,7 +16,9 @@ function App() {
             <Description/>
             <ServicesInfo/>
             <Questions/>
-            <CustomersReview/>
+            {/*<CustomersReview/>*/}
+            <ContactUs/>
+            <Footer/>
         </>
     );
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import backGround from '../public/background.png';
 import '../App.css';
 import {
@@ -10,8 +10,16 @@ import {
     MenuRight, Options,
     Shadow
 } from "../styledComponents/Home-style";
+import FsLightbox from "fslightbox-react";
 import MobileMenu from "./MobileMenu";
 function Home() {
+
+    const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
+
+    function openLightbox(sourceIndex) {
+        setLightboxController({toggler: !lightboxController.toggler, sourceIndex});
+    }
+
     return <>
         <HomeContainer image={`url(${backGround})`}>
             <Shadow/>
@@ -52,11 +60,21 @@ function Home() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
                     <div className='images'>
-                        <img alt={'car'} src={require('../public/car1.png')}/>
-                        <img alt={'car'} src={require('../public/car2.png')}/>
-                        <img alt={'car'} src={require('../public/car3.png')}/>
-                        <img alt={'car'} src={require('../public/car4.png')}/>
+                        <img alt={'car'} src={require('../public/car1.png')} onClick={() => openLightbox(0)}/>
+                        <img alt={'car'} src={require('../public/car2.png')} onClick={() => openLightbox(1)}/>
+                        <img alt={'car'} src={require('../public/car3.png')} onClick={() => openLightbox(2)}/>
+                        <img alt={'car'} src={require('../public/car4.png')} onClick={() => openLightbox(3)}/>
                     </div>
+                    <FsLightbox
+                        toggler={lightboxController.toggler}
+                        sources={[
+                            require('../public/car1.png'),
+                            require('../public/car2.png'),
+                            require('../public/car3.png'),
+                            require('../public/car4.png')
+                        ]}
+                        sourceIndex={lightboxController.sourceIndex}
+                    />
                 </HomeContentLeftSide>
 
                 {/*right side*/}
