@@ -1,34 +1,47 @@
 import styled from "styled-components";
 
 export const CustomersReviewContainer = styled.div`
-  width: 100%;
   background-image: ${(props) => props.image};
-  height: 500px;
+  height: fit-content;
   background-size: 100% 500px;
   position: relative;
-
+padding: 7rem 0 2rem;
   & > h2 {
     color: white;
     position: absolute;
-    top: 2.5rem;
+    top: 2rem;
     width: 100%;
     text-align: center;
-    font-size: 1.9rem;
+    font-size: 1.4rem;
     font-weight: 700;
+  }
+  @media(min-width: 620px){
+    padding: 12rem 0 2rem;
+    &>h2{
+      font-size: 1.9rem;
+      top: 2.5rem;
+    }
   }
 `
 export const Shadow = styled.div`
   background-color: rgba(0, 0, 0, 0.71);
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 `
 export const ComentsContainer = styled.div`
-  position: absolute;
+  position: relative;
   display: flex;
   align-items: center;
-  left: 50%;
-  top: 65%;
-  transform: translate(-50%, -50%);
+margin: 0 auto;
+  width: fit-content;
+  
+  @media(min-width: 620px){
+  
+   
+  }
 `
 export const ArrowBtn = styled.div`
   width: 30px;
@@ -40,9 +53,9 @@ export const ArrowBtn = styled.div`
   align-items: center;
   font-size: 20px;
   color: rgba(239, 239, 239, 1);
-  margin: 0 1rem;
   cursor: pointer;
-  @media (min-width: 620px) {
+  margin-${(props) =>(props.side==='right'?'left':'right')}:.8rem;
+@media (min-width: 620px) {
     margin: 0 3.5rem;
     width: 45px;
     height: 45px;
@@ -54,11 +67,11 @@ export const Coment = styled.div`
   border: 1px solid #2CB4AA;
   background: rgba(255, 255, 255, 0.01);
   backdrop-filter: blur(5px);
-  padding: 1rem;
+  padding: .8rem;
   min-height: 232px;
   & > img {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 5px solid #2CB4AA;
     box-shadow: 0 3px 16px 0 rgba(0, 0, 0, 0.25);
@@ -72,16 +85,16 @@ export const Coment = styled.div`
     border-radius: 19px;
     text-align: center;
     background-color: rgba(255, 255, 255, 1);
-    width: 250px;
-    padding: 3rem 1rem 0;
+    width: 240px;
+    padding: 3rem .6rem 0;
     min-height: 200px;
   }
 
   & > div.comments-background > h6 {
     font-weight: 700;
     color: rgba(65, 65, 65, 1);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    margin-bottom: .8rem;
   }
 
   & > div.comments-background > div {
@@ -93,10 +106,20 @@ export const Coment = styled.div`
     margin: 1rem .3rem ;
   }
   @media (min-width: 620px) {
+    padding: 1rem;
     & > div.comments-background {
       width: 420px;
       padding: 3.5rem 2rem 0;
       min-height: 200px;
     }
+    & > img {
+      width: 90px;
+      height: 90px;
+    }
+    & > div.comments-background > h6 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    
   }
 `

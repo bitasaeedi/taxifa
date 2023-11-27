@@ -5,7 +5,7 @@ import {
 } from "../styledComponents/Description-style";
 import FsLightbox from "fslightbox-react";
 
-function Description() {
+function Description({t}) {
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
 
     function openLightbox(sourceIndex) {
@@ -14,12 +14,12 @@ function Description() {
 
     return (
         <>
-            <DescriptionContainer>
+            <DescriptionContainer id={'about'}>
                 <Attributes>
                     <div>
                         <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
-                            <h6>Fast</h6>
+                            <h6>{t('descriptinItems1')}</h6>
                             <div>Lorem ipsum dolor</div>
                         </div>
                     </div>
@@ -27,7 +27,7 @@ function Description() {
                     <div>
                         <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
-                            <h6>Safe</h6>
+                            <h6>{t('descriptinItems2')}</h6>
                             <div>Lorem ipsum dolor</div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ function Description() {
                     <div>
                         <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
-                            <h6>Comfortable</h6>
+                            <h6>{t('descriptinItems3')}</h6>
                             <div>Lorem ipsum dolor</div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ function Description() {
                     <div>
                         <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
-                            <h6>Inexpensive</h6>
+                            <h6>{t('descriptinItems4')}</h6>
                             <div>Lorem ipsum dolor</div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@ function Description() {
 
                     {/* left side */}
                     <DescriptionLeftSide>
-                        <h2>Who We Are</h2>
+                        <h2>{t('descriptinItems5')}</h2>
                         <p>Lorem ipsum dolor sit amet. A doloribus odio sed accusamus molestiae
                             sit earum adipisci et quos obcaecati ut dolores commodi 33 ipsam omnis.
                             33 labore impedit hic tenetur omnis aut sapiente aspernatur et repudiandae nostrum et quae
@@ -79,18 +79,18 @@ function Description() {
                     {/* right side */}
                     <DescriptionRightSide>
                         <div className="images">
-                            <img alt='car' src={require('../public/des1.png')} onClick={() => openLightbox(0)}/>
+                            <img alt='car' src={require('../public/desc1.png')} onClick={() => openLightbox(0)}/>
                             <img alt='car' src={require('../public/des2.png')} onClick={() => openLightbox(1)}/>
                             <img alt='car' src={require('../public/des3.png')} onClick={() => openLightbox(2)}/>
                             <img alt='car' src={require('../public/des4.png')} onClick={() => openLightbox(3)}/>
                         </div>
-                        <div onClick={() => openLightbox(0)}>brows gallery</div>
+                        <div onClick={() => openLightbox(0)}>{t('descriptinItems6')}</div>
                     </DescriptionRightSide>
 
                     <FsLightbox
                         toggler={lightboxController.toggler}
                         sources={[
-                            require('../public/des1.png'),
+                            require('../public/desc1.png'),
                             require('../public/des2.png'),
                             require('../public/des3.png'),
                             require('../public/des4.png')

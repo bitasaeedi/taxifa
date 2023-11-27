@@ -2,19 +2,19 @@ import React from 'react';
 import {FooterContainer, Links, SocialMedia} from "../styledComponents/Footer-style";
 import '../App.css'
 
-function Footer(props) {
+function Footer({t}) {
     return (
         <>
             <FooterContainer>
                 <h6 className={'Irish_font'}>TaxiFa</h6>
 
                 <Links>
-                    <a href={'/'}>Home</a>
-                    <a href={'/'}>Blog</a>
-                    <a href={'/'}>About</a>
-                    <a href={'/'}>Contact</a>
-                    <a href={'/'}>FAQ</a>
-                    <a href={'/'}>Reviews</a>
+                    <a href={'index.html#home'} >{t('Home')}</a>
+                    <a href={'index.html#blog'}>{t('Blog')}</a>
+                    <a href={'index.html#about'}>{t('About')}</a>
+                    <a href={'index.html#contact'}>{t('Contact')}</a>
+                    <a href={'index.html#faq'}>{t('FAQ')}</a>
+                    <a href={'index.html#reviews'}>{t('Reviews')}</a>
                 </Links>
 
 

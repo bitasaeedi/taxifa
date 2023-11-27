@@ -1,62 +1,78 @@
 import React, {useState} from 'react';
 import backGround from '../public/background.png';
+import { useMediaQuery } from 'react-responsive';
 import '../App.css';
-import {
-    HomeContainer,
-    HomeContent,
-    HomeContentLeftSide, HomeContentRightSide,
-    Menu,
-    MenuLeft,
-    MenuRight, Options,
-    Shadow
+import {HomeContainer, HomeContent, HomeContentLeftSide,
+    HomeContentRightSide, HomeContentRightSideContainer, Menu, MenuLeft, MenuRight, Shadow
 } from "../styledComponents/Home-style";
 import FsLightbox from "fslightbox-react";
 import MobileMenu from "./MobileMenu";
-function Home() {
+import SelectServices from "./mainBox/SelectServices";
+import Luggage from "./mainBox/Luggage";
+import FillTheForm from "./mainBox/FillTheForm";
+import TravelInformation from "./mainBox/TravelInformation";
+import Booking from "./mainBox/Booking";
+
+function Home({t,handleLanguage}) {
 
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
+    // const [isMobile, setIsMobile] = useState(false)
+    const [transformWidth, setTransformWidth] = useState(0);
+    const isMobile = useMediaQuery({ query: `(max-width: 620px)` });
+
+    function transform(page) {
+        if (isMobile) {
+            setTransformWidth(-(page - 1) * 360);
+            console.log(-(page - 1) * 370)
+        } else {
+            setTransformWidth(-(page - 1) * 400);
+            console.log(-(page - 1) * 400)
+        }
+    }
+
 
     function openLightbox(sourceIndex) {
         setLightboxController({toggler: !lightboxController.toggler, sourceIndex});
     }
 
     return <>
-        <HomeContainer image={`url(${backGround})`}>
+        <HomeContainer image={`url(${backGround})`} id={'home'}>
             <Shadow/>
-        {/*  menu  */}
+            {/*  menu  */}
             <Menu>
                 <MobileMenu/>
                 <MenuLeft>
                     <img alt={'Taxifa'} src={require('../public/taxi.png')}/>
-                   <span className={'Irish_font'}>TaxiFa</span>
+                    <span className={'Irish_font'}>TaxiFa</span>
                 </MenuLeft>
 
                 <MenuRight>
 
-                        <img alt={'uk'} src={require('../public/flag.png')}/>
-                        <img alt={'arrow'} src={require('../public/arrow.png')}/>
+                    <img alt={'uk'} src={require('../public/flag.png')} onClick={handleLanguage}/>
+                    <img alt={'arrow'} src={require('../public/arrow.png')}/>
 
                     <div>
-                        <div>Home</div>
-                        <div className='active'>Blog</div>
-                        <div>About</div>
-                        <div>Contact</div>
-                        <div>FAQ</div>
-                        <div>Reviews</div>
-                        <div className='bookBtn'>BOOK A TAXI</div>
+                        <a href={'index.html#home'} >{t('Home')}</a>
+                        <a href={'index.html#blog'}>{t('Blog')}</a>
+                        <a href={'index.html#about'}>{t('About')}</a>
+                        <a href={'index.html#contact'}>{t('Contact')}</a>
+                        <a href={'index.html#faq'}>{t('FAQ')}</a>
+                        <a href={'index.html#reviews'}>{t('Reviews')}</a>
+                        <div className='bookBtn'>{t('Book')}</div>
                     </div>
 
 
                 </MenuRight>
             </Menu>
 
-        {/* Home content  */}
+            {/* Home content  */}
             <HomeContent>
 
                 {/* left side */}
                 <HomeContentLeftSide>
-                    <h1>Book Your <span>Taxi</span> <br/>From Anywhare Today.</h1>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    <h1 dangerouslySetInnerHTML={{ __html: t('homeTitle') }}/>
+                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua.
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     </div>
                     <div className='images'>
@@ -78,31 +94,15 @@ function Home() {
                 </HomeContentLeftSide>
 
                 {/*right side*/}
+
                 <HomeContentRightSide>
-                    <h6>which services do you want?</h6>
-                    <p>lorem ipsum dolor simit is a standard text which writers use in design</p>
-
-                    <Options>
-                        <div>
-                            <img alt={'car'} src={require('../public/option1.png')}/>
-                            <div>Group Taxi</div>
-                        </div>
-                        <div>
-                            <img alt={'car'} src={require('../public/options2.png')}/>
-                            <div>Sochopol</div>
-                        </div>
-                        <div>
-                            <img alt={'car'} src={require('../public/options3.png')}/>
-                            <div>Student Transport</div>
-                        </div>
-                        <div>
-                            <img alt={'car'} src={require('../public/options4.png')}/>
-                            <div>Airport</div>
-                        </div>
-                    </Options>
-
-                    <a href={'/'}>i have no idea what to choose!</a>
-
+                    <HomeContentRightSideContainer translate={transformWidth}>
+                        <SelectServices transform={transform} t={t}/>
+                        <Booking transform={transform} t={t}/>
+                        <Luggage transform={transform} t={t}/>
+                        <FillTheForm transform={transform} t={t}/>
+                        <TravelInformation transform={transform} t={t}/>
+                    </HomeContentRightSideContainer>
                 </HomeContentRightSide>
 
             </HomeContent>

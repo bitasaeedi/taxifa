@@ -62,8 +62,11 @@ export const MenuLeft = styled.div`
 export const MenuRight = styled.div`
   display: none;
   height: fit-content;
+  align-items: center;
   width: 53%;
   color: #FFFFFF;
+  position: relative;
+  z-index: 10;
   //flag
   & > img:first-child {
     width: 32px;
@@ -75,6 +78,7 @@ export const MenuRight = styled.div`
     margin-left: .4rem;
     width: 17px;
     height: 17px;
+    cursor: pointer;
   }
 
   & > div {
@@ -84,11 +88,17 @@ export const MenuRight = styled.div`
     padding: 0 2rem;
     align-items: center;
   }
-
-  & > div > div.active {
+&>div>a{
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  
+}
+  &>div>a:hover{
     color: #FFB300;
     border-bottom: 1px solid #FFB300;
     padding-bottom: .05rem;
+   
   }
 
   & > div > div.bookBtn {
@@ -96,6 +106,7 @@ export const MenuRight = styled.div`
     padding: .5rem 1.1rem;
     border-radius: 6px;
     font-size: .9rem;
+   cursor: pointer;
   }
 
   @media (min-width: 620px) {
@@ -183,12 +194,12 @@ export const HomeContentLeftSide = styled.div`
 
 
 `
+
 export const HomeContentRightSide = styled.div`
-  height: auto;
-  width: 90%;
+  width:360px;
+  height: 490px;
   border: 1px solid #FFB300;
   border-radius: 10px;
-  padding: 2.6rem 2.2rem 2rem;
   margin: 2.5rem auto 0;
   text-align: center;
   background: lightgray -93px 0 / 168% 125% no-repeat, -webkit-gradient(linear, left top, left bottom, from(rgba(52, 58, 66, 0.1)), to(rgba(0, 0, 0, 0.1)));
@@ -198,6 +209,10 @@ export const HomeContentRightSide = styled.div`
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 
+  overflow-x:hidden;
+  position: relative;
+
+  
   & > h6 {
     color: #FFB300;
     font-size: 1rem;
@@ -218,11 +233,10 @@ export const HomeContentRightSide = styled.div`
   }
 
   @media (min-width: 620px) {
-    width: 29%;
-    max-width: 500px;//
+    width: 400px;
     margin-top: 9rem;
-    padding: 2.6rem 2.3rem 2rem;
     margin-left: 16rem;
+    height: 510px;
     & > h6 {
       font-size: 1.2rem;
     }
@@ -238,44 +252,11 @@ export const HomeContentRightSide = styled.div`
   }
 
 `
-export const Options = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 8px;
-  padding: 0 2rem;
-  & > div {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 1rem ;
-    border-radius: 8px;
-    color: #FFFFFF;
-    font-size: .8rem;
-  }
-
-  & > div > img {
-    width: 27px;
-    height: 27px;
-  }
-
-  & > div > div {
-    margin-top: 1rem;
-    
-  }
-
-  @media (min-width: 620px) {
-    padding: 0 2rem;
-    & > div {
-      padding: 1.2rem 1.5rem 1rem;
-      font-size: .8rem;
-    }
-    & > div > img {
-      width: 30px;
-      height: 30px;
-    }
-    & > div > div {
-      margin-top: 1.3rem;
-
-    }
-  }
-
+export  const HomeContentRightSideContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  transform: ${(props) => (`translateX(${props.translate}px)`)};
+  transition: transform .5s ease-in-out;
 `

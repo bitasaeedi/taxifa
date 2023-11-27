@@ -9,7 +9,7 @@ import {
 import backGround from '../public/reviewBackground.png';
 import '../App.css'
 
-function CustomersReview() {
+function CustomersReview({t}) {
     let comments = [
         {
             profile: require('../public/images.jfif'),
@@ -46,12 +46,14 @@ function CustomersReview() {
 
     return (
         <>
-            <CustomersReviewContainer image={`url(${backGround})`}>
+            <CustomersReviewContainer image={`url(${backGround})`} id={'reviews'}>
                 <Shadow/>
-                <h2>Customers Review</h2>
+                <h2>{t('commentsTitle')}</h2>
                 <ComentsContainer>
 
-                    <ArrowBtn onClick={handlePreviousClick}>&lt;</ArrowBtn>
+                    <ArrowBtn onClick={handlePreviousClick} side='left'>
+                        <img alt={''} src={require('../public/Arrow - Right 3.png')}/>
+                    </ArrowBtn>
 
                     {comments.map((comment, index) => {
                         if(index===currentIndex){
@@ -73,7 +75,9 @@ function CustomersReview() {
                         })
                     }
 
-                    <ArrowBtn onClick={handleNextClick}>&gt;</ArrowBtn>
+                    <ArrowBtn onClick={handleNextClick} side='right'>
+                        <img alt={''} src={require('../public/Arrow - Right 2.png')}/>
+                    </ArrowBtn>
 
                 </ComentsContainer>
             </CustomersReviewContainer>

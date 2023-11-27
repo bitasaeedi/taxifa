@@ -9,7 +9,6 @@ export const QuestionsContainer = styled.div`
   }
 
   & > div.all_questions_container {
-    text-align: center;
     display: block;
     width: fit-content;
     margin: 0 auto;
