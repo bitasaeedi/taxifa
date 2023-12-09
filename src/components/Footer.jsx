@@ -9,12 +9,12 @@ function Footer({t}) {
                 <h6 className={'Irish_font'}>TaxiFa</h6>
 
                 <Links>
-                    <a href={'index.html#home'} >{t('Home')}</a>
-                    <a href={'index.html#blog'}>{t('Blog')}</a>
-                    <a href={'index.html#about'}>{t('About')}</a>
-                    <a href={'index.html#contact'}>{t('Contact')}</a>
-                    <a href={'index.html#faq'}>{t('FAQ')}</a>
-                    <a href={'index.html#reviews'}>{t('Reviews')}</a>
+                    <a href={'#home'} >{t('Home')}</a>
+                    <a href={'#blog'}>{t('Blog')}</a>
+                    <a href={'#about'}>{t('About')}</a>
+                    <a href={'#contact'}>{t('Contact')}</a>
+                    <a href={'#faq'}>{t('FAQ')}</a>
+                    <a href={'#reviews'}>{t('Reviews')}</a>
                 </Links>
 
 

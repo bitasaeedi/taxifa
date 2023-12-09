@@ -14,7 +14,7 @@ export const QuestionsContainer = styled.div`
     margin: 0 auto;
   }
   @media (min-width: 620px) {
-    margin: 6rem 19rem;
+    margin: 6rem 15rem;
     width: unset;
     & > h2 {
       text-align: center;
@@ -27,6 +27,9 @@ export const QuestionsContainer = styled.div`
       justify-content: space-between;
     }
      }
+  @media (min-width: 1200px) {
+    margin: 6rem 19rem;
+  }
 `
 export const Question = styled.div`
   width: 100%;
@@ -35,7 +38,7 @@ export const Question = styled.div`
   & > div.number {
     background-color: #2CB4AA;
     color: #fff;
-    margin-right: 0;
+    margin-right: .5rem;
     border-radius: 50%;
     width: 33px;
     height: 30px;

@@ -40,6 +40,13 @@ export const MenuLeft = styled.div`
   & > img {
     width: 42px;
   }
+  &>img.menu{
+    width: 30px;
+    margin-right: .6rem;
+    position: relative;
+    z-index: 10;
+    display:  ${(props) => (props.mobile? 'unset' : 'none')};
+  }
 
   & > span {
     padding-left: .6rem;
@@ -63,7 +70,6 @@ export const MenuRight = styled.div`
   display: none;
   height: fit-content;
   align-items: center;
-  width: 53%;
   color: #FFFFFF;
   position: relative;
   z-index: 10;
@@ -85,14 +91,14 @@ export const MenuRight = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0 2rem;
+    margin-right: 2rem;
     align-items: center;
   }
 &>div>a{
+  padding: 0 .9rem;
   cursor: pointer;
   text-decoration: none;
   color: white;
-  
 }
   &>div>a:hover{
     color: #FFB300;
@@ -103,14 +109,24 @@ export const MenuRight = styled.div`
 
   & > div > div.bookBtn {
     background-color: rgba(255, 179, 0, 1);
-    padding: .5rem 1.1rem;
+    padding: .5rem 1rem;
     border-radius: 6px;
-    font-size: .9rem;
+    font-size: .85rem;
    cursor: pointer;
+    margin-left: 1.3rem;
   }
 
   @media (min-width: 620px) {
     display: flex;
+  }
+  @media (min-width: 1200px) {
+    &>div>a{
+      padding: 0 1.3rem;
+    }
+    & > div > div.bookBtn {
+      padding: .5rem 1.1rem;
+      font-size: .9rem;
+    }
   }
 
 
@@ -125,7 +141,8 @@ export const HomeContent = styled.div`
   left: 0;
   @media (min-width: 620px) {
     display: flex;
-    margin: 0 6rem ;
+    margin: 0 auto ;
+    width: 85%;
   }
 
 `
@@ -162,21 +179,17 @@ export const HomeContentLeftSide = styled.div`
   }
 
   @media (min-width: 620px) {
-    margin-top: 13rem;
-    width: 44%;
+    margin-top: 11rem;
+    width: 70%;
     & > h1 {
       margin-bottom: 1.5rem;
-      font-size: 3.1rem;
+      font-size: 2.8rem;
       font-weight: 600;
       line-height: 3.4rem;
     }
-
-    & > h1 > span {
-
-    }
-
+    
     & > div {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 300;
       line-height: 1.5rem;
     }
@@ -186,18 +199,30 @@ export const HomeContentLeftSide = styled.div`
       justify-content: space-between;
     }
     & > div.images > img {
+      margin: 2rem .9rem 0 0;
+      width: 70px;
+      height: 70px;
+    }
+  }
+  @media (min-width: 1200px){
+    width: 44%;
+    & > div.images > img {
       margin: 2rem 1.2rem 0 0;
       width: 80px;
       height: 80px;
     }
+    & > h1 {
+      font-size: 3.1rem;
+    }
+    & > div {
+      font-size: 1.1rem;
+    }
   }
-
-
 `
 
 export const HomeContentRightSide = styled.div`
-  width:360px;
-  height: 490px;
+  width:310px;
+  height: 495px;
   border: 1px solid #FFB300;
   border-radius: 10px;
   margin: 2.5rem auto 0;
@@ -208,11 +233,8 @@ export const HomeContentRightSide = styled.div`
   box-shadow: 4px 4px 25px 0 rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-
   overflow-x:hidden;
   position: relative;
-
-  
   & > h6 {
     color: #FFB300;
     font-size: 1rem;
@@ -231,11 +253,14 @@ export const HomeContentRightSide = styled.div`
     margin-top: 3rem;
     display: inline-block;
   }
-
+  @media (min-width: 380px){
+    width:360px;
+  }
   @media (min-width: 620px) {
     width: 400px;
+    min-width: 400px;
     margin-top: 9rem;
-    margin-left: 16rem;
+    margin-left: 8rem;
     height: 510px;
     & > h6 {
       font-size: 1.2rem;

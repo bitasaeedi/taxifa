@@ -47,9 +47,12 @@ export const AllServicesContainer = styled.div`
     display: flex;
     margin: 0 7.5rem;
     grid-template-columns: 1fr 1fr;
-    top: 10rem;
+    top: 8rem;
     gap: 10px;
      }
+  @media (min-width: 1200px){
+    top: 10rem;
+  }
 `
 export const Service = styled.div`
   width: 100%;
@@ -83,11 +86,18 @@ export const Service = styled.div`
     text-decoration: none;
   }
   @media (min-width: 620px) {
+    padding: 2rem 1.2rem 1.2rem;
+    width: 22.5%;
+    & > p {
+      margin: 2.3rem 0;
+    }
+     }
+  @media (min-width: 1200px) {
     padding: 2.5rem 1.5rem 1.5rem;
     width: 21.5%;
     & > p {
       margin: 2.5rem 0 3.7rem;
     }
-     }
+  }
 
 `

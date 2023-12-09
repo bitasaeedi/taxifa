@@ -42,12 +42,28 @@ export const Attributes = styled.div`
   }
 
   @media (min-width: 620px) {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0 20px;
     margin: 0 3rem;
     & > div {
       margin-bottom: 0;
     }
 
+    & > div > img {
+      width: 50px;
+      height: 30px;
+    }
+
+    & > div > div > h6 {
+      font-size: 1.05rem;
+    }
+
+    & > div > div > div {
+      font-size: .9rem;
+    }
+  }
+  @media (min-width: 1300px) {
+    gap: 0 10px;
     & > div > img {
       width: 59px;
       height: 34px;
@@ -55,10 +71,6 @@ export const Attributes = styled.div`
 
     & > div > div > h6 {
       font-size: 1.1rem;
-    }
-
-    & > div > div > div {
-      font-size: .9rem;
     }
   }
 `
@@ -77,6 +89,7 @@ export const Descript = styled.div`
 export const DescriptionLeftSide = styled.div`
   width: 100%;
   margin-bottom: 4rem;
+
   & > h2 {
     margin: 1rem 0 2rem;
     font-size: 1.7rem;
@@ -93,6 +106,7 @@ export const DescriptionLeftSide = styled.div`
   @media (min-width: 620px) {
     width: 60%;
     margin-bottom: 0;
+    margin-right: 4rem;
     & > h2 {
       margin: 5rem 0 3rem;
       font-size: 1.8rem;
@@ -134,6 +148,12 @@ export const DescriptionRightSide = styled.div`
     & > div.images {
       border-radius: 50px;
     }
+
+    & > div.images > img {
+      width: 190px;
+    }
+  }
+  @media (min-width: 1200px){
     & > div.images > img {
       width: 215px;
     }
@@ -168,11 +188,23 @@ export const Infos = styled.div`
   }
 
   @media (min-width: 620px) {
-    margin-top: 6rem;
+    width: fit-content;
+    &>div{
+      width: unset;
+    }
+    & > div.center {
+      
+      padding: 0 3rem;
+      margin: 0 3rem;
+      text-align: center;
+    }
+
+    margin: 6rem auto 0;
     & > div > h6 {
       margin-bottom: 0;
       font-size: 1.5rem;
     }
+
     & > div > div {
       font-size: 1.05rem;
     }

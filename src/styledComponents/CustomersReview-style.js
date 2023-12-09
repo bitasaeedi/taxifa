@@ -44,18 +44,24 @@ margin: 0 auto;
   }
 `
 export const ArrowBtn = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background-color: rgba(255, 255, 255, 0.20);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 10px;
   color: rgba(239, 239, 239, 1);
   cursor: pointer;
+  margin-${(props) =>(props.side==='right'?'left':'right')}:.4rem;
+@media (min-width: 355px) {
   margin-${(props) =>(props.side==='right'?'left':'right')}:.8rem;
-@media (min-width: 620px) {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+  }
+  @media (min-width: 620px) {
     margin: 0 3.5rem;
     width: 45px;
     height: 45px;

@@ -100,12 +100,15 @@ export const Form = styled.div`
 
   @media (min-width: 620px) {
     position: absolute;
-    right: 0;
+   right: -5rem;
     top: 2%;
     border: none;
     padding: 2.5rem 2rem 3rem;
     & > input {
       width: 340px;
     }
+  }
+  @media (min-width: 1200px){
+    right: 0;
   }
 `

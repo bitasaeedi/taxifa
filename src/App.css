@@ -36,3 +36,26 @@
 .checked {
     color: orange;
 }
+input[type='radio'] {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #aeaeae;
+    border-radius: 0;
+    outline: none;
+    box-shadow: 0 0 5px rgba(153, 153, 153, 0.78);
+    transition: box-shadow 0.3s ease;
+}
+
+input[type='radio']:before {
+    content: '';
+    display: block;
+    width: 69%;
+    height: 65%;
+    margin: 14% auto;
+    border-radius: 0;
+}
+
+ input[type='radio']:checked:before {
+    background: #aeaeae;
+}

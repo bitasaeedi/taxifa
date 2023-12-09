@@ -48,8 +48,9 @@ export const Options = styled.div`
 `
 export const SelectServicesBox = styled.div`
   padding: 2.6rem 2rem 2rem;
-  width: 360px;
+  width: 310px;
   height: 489px;
+
   & > h6 {
     color: #FFB300;
     font-size: 1rem;
@@ -68,6 +69,9 @@ export const SelectServicesBox = styled.div`
     text-decoration: none;
     margin-top: 3rem;
     display: inline-block;
+  }
+  @media (min-width: 380px){
+    width:360px;
   }
 
   @media (min-width: 620px) {
@@ -96,9 +100,9 @@ export const MainBoxContainer = styled.div`
   padding: 1.5rem 1.7rem;
   position: relative;
   transition: transform .5s ease-in-out;
-  width: 360px;
+  width: 310px;
   height: 489px;
-  
+
   & > h2 {
     color: #FFB300;
     font-size: 1.15rem;
@@ -116,34 +120,54 @@ export const MainBoxContainer = styled.div`
     font-weight: 700;
 
   }
-@media(min-width: 620px){
-  padding: 1.5rem 1.7rem;
-  height: 509px;
-  width: 400px;
-  & > h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1.6rem;
+  @media (min-width: 380px){
+    width:360px;
   }
-}
-  
+  @media (min-width: 620px) {
+    padding: 1.5rem 1.7rem;
+    height: 509px;
+    width: 400px;
+    & > h2 {
+      font-size: 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+  }
+
 
 `
 export const SecondContainer = styled.div`
   padding: 0 .3rem;
   width: 100%;
-
+  overflow-y: auto;
+max-height: 350px;
   & > h6 {
     color: #F1F1F1;
     font-size: .8rem;
     font-weight: 400;
     margin: 1.1rem 0 .5rem;
   }
-  @media(min-width: 620px){
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  @media (min-width: 620px) {
+    max-height: 350px;
     & > h6 {
       margin: 1.5rem 0 .5rem;
     }
-    &>h6:first-child{
-      margin:.8rem 0 .5rem;
+
+    & > h6:first-child {
+      margin: .8rem 0 .5rem;
     }
   }
 `
@@ -152,7 +176,6 @@ export const SecondContainer = styled.div`
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
   width: 100%;
-
 
   & > div.input-label {
     color: #F1F1F1;
@@ -163,31 +186,43 @@ export const InputsContainer = styled.div`
 
   & > div.input-label > input {
     margin-right: .5rem;
-    position: relative;
-    padding-left: 30px; /* Adjust as needed */
     cursor: pointer;
-    display: inline-block;
-    line-height: 20px;
   }
 
-  & > div.input-label > input:checked {
-    background-color: snow;
-  }
 
   & > div.input {
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding:.5rem .7rem;
+    padding: 0 .7rem;
     display: flex;
     align-items: center;
     border-radius: 8px;
-    min-height: 40px;
+    font-size: .9rem;
+   
+    pointer-events: ${(props) => (props.return === false ? 'none' : 'auto')};
+
   }
-  
-  & > div.input > input {
+
+  & > div.input input {
     background-color: unset;
     border: 0;
-    margin-left: .2rem;
+    margin-left: .35rem;
     width: 100%;
+    height: 100%;
+    outline: none;
+    color: white;
+    min-height: 40px;
+    font-size: .8rem;
+    filter: ${(props) => (props.return === false ? 'blur(.8px)' : 'unset')};
+  }
+
+  & > div.input input.react-datepicker-time__input {
+    color: black;
+  }
+
+  & > div.showAaddress {
+    color: #a7a6a6;
+    margin-top: .5rem;
+    font-size: .8rem;
   }
 
   @media (min-width: 620px) {
@@ -198,10 +233,11 @@ export const InputsContainer = styled.div`
     }
 
     & > div.input {
-      padding: .7rem;
-      min-height: 40px;
+      padding: 0 .5rem;
+
     }
-    
+
+
   }
 `
 export const InputsContainer2 = styled.div`
@@ -215,7 +251,7 @@ export const Luggage = styled.div`
   display: flex;
   align-items: center;
   margin-top: .5rem;
-  
+
   & > p {
     color: #F1F1F1;
     font-size: .85rem;
@@ -254,9 +290,11 @@ export const LuggageOptionsBox = styled.div`
   width: 100%;
   margin-bottom: 1rem;
 
-  & > img {
+  & > i {
     width: 20px;
     height: 20px;
+    color: white;
+    margin-left: .3rem;
   }
 
   & > div.text > div:first-child {
@@ -280,42 +318,14 @@ export const LuggageOptionsBox = styled.div`
   & > div.amount > div {
     margin: 0 1rem;
   }
-`
-export const LuggageOptionsBox2 = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  padding: .7rem .7rem;
-  width: 100%;
-  margin-bottom: 1rem;
 
-  & > img {
-    width: 20px;
-    height: 20px;
+  & > div > input {
+    cursor: pointer;
+    border: 1px solid white;
   }
 
-  & > div.text > div:first-child {
-    color: white;
-    font-size: .9rem;
-    margin-bottom: .3rem;
-  }
-
-  & > div.text > div:last-of-type {
-    color: rgba(143, 143, 143, 0.80);
-    font-size: .75rem;
-  }
-
-  & > div.amount {
-    display: flex;
-    width: 38%;
-    color: rgba(255, 255, 255, 0.85);
-    justify-content: center;
-  }
-
-  & > div.amount > div {
-    margin: 0 1rem;
+  & > div.amount > img {
+    cursor: pointer;
   }
 `
 export const BottomPart = styled.div`
@@ -340,7 +350,7 @@ export const BottomPart = styled.div`
   & > div > div {
     font-size: .85rem;
     margin-left: .6rem;
-    
+
   }
 
   & > button {
@@ -355,7 +365,7 @@ export const BottomPart = styled.div`
 `
 //fill the form
 export const FormsInput = styled.input`
-  
+
   border-radius: 8px;
   border: 0.5px solid rgba(255, 255, 255, 0.30);
   width: 100%;
@@ -363,20 +373,21 @@ export const FormsInput = styled.input`
   padding: .7rem 1rem;
   color: rgba(255, 255, 255, 0.91);
   font-size: .85rem;
-  
-  @media(min-width: 620px){
+
+  @media (min-width: 620px) {
     padding: .7rem 1rem;
   }
 `
 //travel info
 export const TravelInfo = styled.div`
-  &>hr{
+  & > hr {
     position: absolute;
     width: 100%;
     left: 0;
     top: 15.6rem;
     border-color: rgba(255, 255, 255, 0.1);
   }
+
   font-size: .95rem;
 
   & > div.date {
@@ -386,8 +397,8 @@ export const TravelInfo = styled.div`
     margin-bottom: 1.5rem;
   }
 
-  & > div.date > div > span {
-    margin: 0 0 0 .8rem;
+  & > div.date > div {
+    margin: 0 .8rem 0;
   }
 
   & > div.location-info {
@@ -420,7 +431,7 @@ export const TravelInfo = styled.div`
 
 `
 export const PaymentMethod = styled.div`
-  display:  ${(props) => (props.display === false ? 'none' : 'block')};
+  display: ${(props) => (props.display === false ? 'none' : 'block')};
   background: lightgray -58px 0 / 167% 125% no-repeat, linear-gradient(180deg, rgba(52, 58, 66, 0.01) 0%, rgba(0, 0, 0, 0.01) 100%);
   box-shadow: 4px 4px 25px 0 rgba(0, 0, 0, 0.61);
   backdrop-filter: blur(30px);

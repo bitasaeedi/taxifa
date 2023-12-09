@@ -16,7 +16,7 @@ import Booking from "./mainBox/Booking";
 function Home({t,handleLanguage}) {
 
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
-    // const [isMobile, setIsMobile] = useState(false)
+    const [menu, setMenu] = useState(false)
     const [transformWidth, setTransformWidth] = useState(0);
     const isMobile = useMediaQuery({ query: `(max-width: 620px)` });
 
@@ -29,7 +29,9 @@ function Home({t,handleLanguage}) {
             console.log(-(page - 1) * 400)
         }
     }
-
+function handleMenu(){
+        setMenu(!menu)
+}
 
     function openLightbox(sourceIndex) {
         setLightboxController({toggler: !lightboxController.toggler, sourceIndex});
@@ -40,8 +42,11 @@ function Home({t,handleLanguage}) {
             <Shadow/>
             {/*  menu  */}
             <Menu>
-                <MobileMenu/>
-                <MenuLeft>
+                <MobileMenu t={t} menu={menu} handleMenu={handleMenu}/>
+                <MenuLeft mobile={isMobile} >
+                    <img alt={'Taxifa'} className={'menu'} onClick={()=>{
+                        handleMenu();
+                        console.log(menu)}} src={require('../public/menu.png')}/>
                     <img alt={'Taxifa'} src={require('../public/taxi.png')}/>
                     <span className={'Irish_font'}>TaxiFa</span>
                 </MenuLeft>
@@ -52,12 +57,12 @@ function Home({t,handleLanguage}) {
                     <img alt={'arrow'} src={require('../public/arrow.png')}/>
 
                     <div>
-                        <a href={'index.html#home'} >{t('Home')}</a>
-                        <a href={'index.html#blog'}>{t('Blog')}</a>
-                        <a href={'index.html#about'}>{t('About')}</a>
-                        <a href={'index.html#contact'}>{t('Contact')}</a>
-                        <a href={'index.html#faq'}>{t('FAQ')}</a>
-                        <a href={'index.html#reviews'}>{t('Reviews')}</a>
+                        <a href={'#home'} >{t('Home')}</a>
+                        <a href={'#blog'}>{t('Blog')}</a>
+                        <a href={'#about'}>{t('About')}</a>
+                        <a href={'#contact'}>{t('Contact')}</a>
+                        <a href={'#faq'}>{t('FAQ')}</a>
+                        <a href={'#reviews'}>{t('Reviews')}</a>
                         <div className='bookBtn'>{t('Book')}</div>
                     </div>
 

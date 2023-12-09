@@ -1,17 +1,16 @@
 import React from 'react';
 import {Menu} from "../styledComponents/MobileMenu-style";
 
-function MobileMenu() {
+function MobileMenu({t,menu,handleMenu}) {
     return (
         <>
-            <Menu>
-               <li>Home</li>
-                <li>Blog</li>
-                <li>About</li>
-                <li>Contact</li>
-                <li>FAQ</li>
-                <li>Reviews</li>
-                <li>BOOK A TAXI</li>
+            <Menu menu={menu}>
+                <a href={'#home'} onClick={handleMenu} >{t('Home')}</a>
+                <a href={'#blog'} onClick={handleMenu}>{t('Blog')}</a>
+                <a href={'#about'} onClick={handleMenu}>{t('About')}</a>
+                <a href={'#contact'} onClick={handleMenu}>{t('Contact')}</a>
+                <a href={'#faq'} onClick={handleMenu}>{t('FAQ')}</a>
+                <a href={'#reviews'} onClick={handleMenu}>{t('Reviews')}</a>
             </Menu>
         </>
     );
