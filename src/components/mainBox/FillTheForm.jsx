@@ -31,7 +31,7 @@ function FillTheForm(props) {
             else if(lastName===''){
                 alert('you dont write your last name.');
             }
-            else if(number===''){
+            else if(number.length!==11){
                 alert('your phone number is not true.');
             }
             // Toast(error.response.data.message, false);
