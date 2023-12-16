@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import backGround from '../public/background.png';
+import backGround from '../public/background-min.png';
 import { useMediaQuery } from 'react-responsive';
 import '../App.css';
 import {HomeContainer, HomeContent, HomeContentLeftSide,
@@ -12,21 +12,23 @@ import Luggage from "./mainBox/Luggage";
 import FillTheForm from "./mainBox/FillTheForm";
 import TravelInformation from "./mainBox/TravelInformation";
 import Booking from "./mainBox/Booking";
+import {ToastContainer} from "react-toastify";
 
 function Home({t,handleLanguage}) {
 
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
     const [menu, setMenu] = useState(false)
     const [transformWidth, setTransformWidth] = useState(0);
-    const isMobile = useMediaQuery({ query: `(max-width: 620px)` });
-
+    const isdesc = useMediaQuery({ query: `(min-width: 620px)` });
+    const isMobile2 = useMediaQuery({ query: `(min-width: 380px)` });
     function transform(page) {
-        if (isMobile) {
-            setTransformWidth(-(page - 1) * 360);
-            console.log(-(page - 1) * 370)
-        } else {
+        if (isdesc) {
             setTransformWidth(-(page - 1) * 400);
-            console.log(-(page - 1) * 400)
+        } else if(isMobile2) {
+            setTransformWidth(-(page - 1) * 360);
+        }
+        else {
+            setTransformWidth(-(page - 1) * 310);
         }
     }
 function handleMenu(){
@@ -38,12 +40,13 @@ function handleMenu(){
     }
 
     return <>
+        <ToastContainer/>
         <HomeContainer image={`url(${backGround})`} id={'home'}>
             <Shadow/>
             {/*  menu  */}
             <Menu>
                 <MobileMenu t={t} menu={menu} handleMenu={handleMenu}/>
-                <MenuLeft mobile={isMobile} >
+                <MenuLeft mobile={!isdesc} >
                     <img alt={'Taxifa'} className={'menu'} onClick={()=>{
                         handleMenu();
                         console.log(menu)}} src={require('../public/menu.png')}/>

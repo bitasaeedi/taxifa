@@ -1,6 +1,6 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'http://13.51.13.8:3000/api'
+    baseURL: 'https://www.taxicentraalsoest.nl/api'
 });
 export default instance;

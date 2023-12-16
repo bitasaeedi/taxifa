@@ -153,7 +153,7 @@ export const DescriptionRightSide = styled.div`
       width: 190px;
     }
   }
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     & > div.images > img {
       width: 215px;
     }

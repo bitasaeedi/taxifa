@@ -118,10 +118,15 @@ export const MenuRight = styled.div`
 
   @media (min-width: 620px) {
     display: flex;
+    &>div>a{
+      padding: 0 .4rem;
+      margin: 0 .4rem;
+    }
   }
   @media (min-width: 1200px) {
     &>div>a{
-      padding: 0 1.3rem;
+      padding: 0 .8rem;
+      margin: 0 .5rem;
     }
     & > div > div.bookBtn {
       padding: .5rem 1.1rem;

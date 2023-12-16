@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {BottomPart, FormsInput, MainBoxContainer, SecondContainer} from "../../styledComponents/MainBox-style";
 import {useAppContext} from "../context";
 import axios from "../axios";
+import {Toast} from "../toast";
+import {Oval} from "react-loader-spinner";
 
 function FillTheForm(props) {
     const [name, setName] = useState('');
@@ -11,28 +13,33 @@ function FillTheForm(props) {
     const {setTripInfo} = useAppContext();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const {tripInfo,setResponse,loggageFlag} = useAppContext();
-
+    const [loader,setLoader]=useState(false)
     function sendRequest(){
-        console.log(tripInfo)
+      setLoader(true)
         axios.post(`/trip`, tripInfo
         ).then(function (response) {
                 console.log(response.data)
                 setResponse(response.data.body)
+            setLoader(false)
             props.transform(5);
             }
         ).catch(function (error) {
+            setLoader(false)
             console.error('Error:', error);
             if (!emailPattern.test(email)) {
-                alert('Email is not valid. Please enter a valid email address.');
+                Toast('Email is not valid. Please enter a valid email address',false);
             }
             else if(name===''){
-                alert('you dont write your name.');
+                Toast('you dont write your name',false);
             }
             else if(lastName===''){
-                alert('you dont write your last name.');
+                Toast('you dont write your last name',false);
             }
             else if(number.length!==11){
-                alert('your phone number is not true.');
+                Toast('your phone number is not true',false);
+            }
+            else{
+                Toast(error.response.data.message,false)
             }
             // Toast(error.response.data.message, false);
         });
@@ -57,12 +64,12 @@ function FillTheForm(props) {
     }
 
     return (
-        <MainBoxContainer>
+        <MainBoxContainer >
             <h2>{props.t('form')}</h2>
 
-            <SecondContainer>
+            <SecondContainer type={'fill'}>
                 <h6>{props.t('form1')}</h6>
-                <FormsInput onChange={(event) => {
+                <FormsInput type={'email'} onChange={(event) => {
                     setTripInfo((info) => ({
                         ...info,
                         passenger: {
@@ -86,7 +93,7 @@ function FillTheForm(props) {
                 }} value={lastName}/>
 
                 <h6>{props.t('form3')}</h6>
-                <FormsInput onChange={(event) => {
+                <FormsInput  type="tel" onChange={(event) => {
                     setNumber(event.target.value)
                     setTripInfo((info) => ({
                         ...info,
@@ -98,7 +105,7 @@ function FillTheForm(props) {
                 }} value={number}/>
 
                 <h6>Email</h6>
-                <FormsInput onChange={(event) => {
+                <FormsInput type={'email'} name="email" onChange={(event) => {
                     setEmail(event.target.value)
                     setTripInfo((info) => ({
                         ...info,
@@ -126,7 +133,18 @@ function FillTheForm(props) {
 
                 <button onClick={() => {
                     sendRequest();
-                }}>{props.t('next')}</button>
+                }}>
+                    {loader?<Oval
+                        height={18}
+                        width={30}
+                        color="#414141"
+                        visible={loader}
+                        ariaLabel='oval-loading'
+                        secondaryColor="#ffffff"
+                        strokeWidth={6}
+                        strokeWidthSecondary={6}
+
+                    />:props.t('next')}</button>
             </BottomPart>
 
         </MainBoxContainer>

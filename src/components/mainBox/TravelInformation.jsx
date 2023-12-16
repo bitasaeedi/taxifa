@@ -8,10 +8,14 @@ import {
 } from "../../styledComponents/MainBox-style";
 import {useAppContext} from "../context";
 import axios from "../axios";
+import {Toast} from "../toast";
+import {Oval} from "react-loader-spinner";
 
 function TravelInformation(props) {
     const [paymentIsOpen, setPaymentIsOpen] = useState(false);
     const {response} = useAppContext();
+    const [loader,setLoader]=useState(false)
+    const [loader2,setLoader2]=useState(false)
     const formattedDate = new Date(response.pickup_time).toLocaleString('en-GB', {
         day: '2-digit',
         month: '2-digit',
@@ -35,7 +39,7 @@ function TravelInformation(props) {
             if(type==='online'){
                 window.location.replace(response.data.body.url);
             }else{
-                alert('we send an email for you')
+                Toast('we send an email for you',true)
             }
 
             }
@@ -107,8 +111,31 @@ function TravelInformation(props) {
 
                 <PaymentMethod display={paymentIsOpen}>
                     <h4>Payment Method :</h4>
-                    <PaymentButton color={'yellow'} onClick={() => handlePayment('online')}>Online</PaymentButton>
-                    <PaymentButton color={'gray'} onClick={() => handlePayment('cash')}>later(Cash...)</PaymentButton>
+                    <PaymentButton color={'yellow'} onClick={() => handlePayment('online')}>
+                        {loader?<Oval
+                            height={20}
+                            width={30}
+                            color="#414141"
+                            visible={loader}
+                            ariaLabel='oval-loading'
+                            secondaryColor="#ffffff"
+                            strokeWidth={6}
+                            strokeWidthSecondary={6}
+
+                            />:'active'}
+                    </PaymentButton>
+                    <PaymentButton color={'gray'} onClick={() => handlePayment('cash')}>
+                        {loader?<Oval
+                            height={20}
+                            width={30}
+                            color="#414141"
+                            visible={loader}
+                            ariaLabel='oval-loading'
+                            secondaryColor="#ffffff"
+                            strokeWidth={6}
+                            strokeWidthSecondary={6}
+
+                        />:'later(Cash...)'}</PaymentButton>
                     <div>
                         <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
                         <div onClick={() => {

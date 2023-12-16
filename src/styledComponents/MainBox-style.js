@@ -70,8 +70,9 @@ export const SelectServicesBox = styled.div`
     margin-top: 3rem;
     display: inline-block;
   }
-  @media (min-width: 380px){
-    width:360px;
+
+  @media (min-width: 380px) {
+    width: 360px;
   }
 
   @media (min-width: 620px) {
@@ -111,6 +112,10 @@ export const MainBoxContainer = styled.div`
     display: inline-block;
   }
 
+  & > h2.form-title {
+    margin-bottom: 1rem;
+  }
+
   & > div.price {
     color: #2CB4AA;
     display: inline-block;
@@ -120,8 +125,9 @@ export const MainBoxContainer = styled.div`
     font-weight: 700;
 
   }
-  @media (min-width: 380px){
-    width:360px;
+
+  @media (min-width: 380px) {
+    width: 360px;
   }
   @media (min-width: 620px) {
     padding: 1.5rem 1.7rem;
@@ -136,10 +142,11 @@ export const MainBoxContainer = styled.div`
 
 `
 export const SecondContainer = styled.div`
-  padding: 0 .3rem;
+  padding: ${(props) => (props.type === 'fill' ? '0 .3rem .2rem' : '0 .3rem')};
   width: 100%;
   overflow-y: auto;
-max-height: 350px;
+  max-height: 350px;
+
   & > h6 {
     color: #F1F1F1;
     font-size: .8rem;
@@ -154,12 +161,15 @@ max-height: 350px;
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
+
   &::-webkit-scrollbar-thumb {
     background: #888;
   }
+
   &::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
   @media (min-width: 620px) {
     max-height: 350px;
     & > h6 {
@@ -177,9 +187,14 @@ export const InputsContainer = styled.div`
   margin-bottom: .8rem;
   width: 100%;
 
+  & div.react-datepicker-popper {
+    transform: translate3d(34%,40%, 0px) !important;
+    
+  }
+
   & > div.input-label {
     color: #F1F1F1;
-    font-size: .85rem;
+    font-size: .78rem;
     font-weight: 400;
     margin-bottom: .4rem;
   }
@@ -188,8 +203,7 @@ export const InputsContainer = styled.div`
     margin-right: .5rem;
     cursor: pointer;
   }
-
-
+  
   & > div.input {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0 .7rem;
@@ -197,7 +211,7 @@ export const InputsContainer = styled.div`
     align-items: center;
     border-radius: 8px;
     font-size: .9rem;
-   
+
     pointer-events: ${(props) => (props.return === false ? 'none' : 'auto')};
 
   }
@@ -210,7 +224,7 @@ export const InputsContainer = styled.div`
     height: 100%;
     outline: none;
     color: white;
-    min-height: 40px;
+    min-height: 35px;
     font-size: .8rem;
     filter: ${(props) => (props.return === false ? 'blur(.8px)' : 'unset')};
   }
@@ -231,13 +245,16 @@ export const InputsContainer = styled.div`
       font-size: .9rem;
 
     }
-
     & > div.input {
       padding: 0 .5rem;
 
     }
-
-
+  }
+  @media (min-width: 380px){
+    & > div.input input{
+      min-height: 38px;
+    }
+    
   }
 `
 export const InputsContainer2 = styled.div`
@@ -250,22 +267,32 @@ export const InputsContainer2 = styled.div`
 export const Luggage = styled.div`
   display: flex;
   align-items: center;
-  margin-top: .5rem;
+  margin-top: .1rem;
 
   & > p {
     color: #F1F1F1;
-    font-size: .85rem;
+    font-size: .75rem;
     font-weight: 400;
-    margin: 0 2rem 0 .7rem;
+    margin: 0 1.8rem 0 .7rem;
   }
 
   & > div {
     color: #696967;
-    font-size: .9rem;
+    font-size: .8rem;
   }
 
   & > div:first-of-type {
     margin-right: 1.2rem;
+  }
+  @media (min-width: 620px){
+    margin-top: .5rem;
+    & > p {
+      font-size: .85rem;
+      margin: 0 2rem 0 .7rem;
+    }
+    & > div {
+      font-size: .9rem;
+    }
   }
 `
 export const Button = styled.div`
@@ -330,7 +357,7 @@ export const LuggageOptionsBox = styled.div`
 `
 export const BottomPart = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: -.3rem;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -362,15 +389,18 @@ export const BottomPart = styled.div`
     border: 0;
     cursor: pointer;
   }
+  @media (min-width: 620px){
+    bottom: 0;
+  }
 `
 //fill the form
 export const FormsInput = styled.input`
 
   border-radius: 8px;
-  border: 0.5px solid rgba(255, 255, 255, 0.30);
+  border: 0.5px solid rgba(255, 255, 255, 0.30) !important;
   width: 100%;
-  background-color: unset;
-  padding: .7rem 1rem;
+  background-color: transparent !important;
+  padding: .6rem 1rem;
   color: rgba(255, 255, 255, 0.91);
   font-size: .85rem;
 

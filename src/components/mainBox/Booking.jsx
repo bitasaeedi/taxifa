@@ -10,7 +10,7 @@ import {
 } from "../../styledComponents/MainBox-style";
 import 'react-calendar/dist/Calendar.css';
 import {throttle} from 'lodash';
-import axios from "axios";
+import axios from "../axios";
 import {Toast} from "../toast";
 import {ToastContainer} from "react-toastify";
 import DatePicker from 'react-datepicker'
@@ -27,16 +27,16 @@ function Booking(props) {
         setTripInfo((info) => ({
             ...info,
             origin: {
-                postal_code: "1200 AB 14",
-                lat: "51.152468",
-                lan: "4.568742",
-                address: "NL JOrge Street"
+                postal_code: fromAddress.postcode+fromAddress.houseNumber.toString(),
+                lat: fromAddress.latitude,
+                lan: fromAddress.longitude,
+                address: fromAddress.city+fromAddress.street
             },
             destination: {
-                postal_code: "3067EV 19",
-                lat: "51.178468",
-                lan: "4.568942",
-                address: "NL JOrge Street"
+                postal_code: toAddress.postcode+toAddress.houseNumber.toString(),
+                lat: toAddress.latitude,
+                lan: toAddress.longitude,
+                address:toAddress.city+toAddress.street
             },
             pickup_time: date,
             return: Return?"true":"false",
@@ -91,19 +91,25 @@ function Booking(props) {
     }, [fromInput, toInput]);
 
     function sendRequest(value, type) {//send reqest
-
-        axios.get(`http://46.249.102.100:3002/api/trip/address/get-by-post-code/3067EV13`
+        let code ;
+        type==="from"?code=fromInput:code=toInput;
+        if(code.length>6 ){
+        axios.get(`/trip/address/get-by-post-code/${code}`
         ).then(function (response) {
                 if (type === 'from') {
-                    setFromAddress(response.data.body[0])
+                    setFromAddress(response.data.body)
                     console.log(response)
                 } else {
-                    setToAddress(response.data.body[0])
+                    setToAddress(response.data.body)
                 }
             }
         ).catch(function (error) {
             console.error('Error:', error);
+            if(error.response){
+                Toast('This address does not exist',false)
+            }
         });
+        }
     }
 
     return (
@@ -122,7 +128,7 @@ function Booking(props) {
                                 handleInputChange('from', event)
                             }}/>
                         </div>
-                        {fromAddress ? <div className="showAaddress">{fromAddress.label}</div> : ''}
+                        {fromAddress ? <div className="showAaddress">{fromAddress.city}, {fromAddress.street}</div> : ''}
                         {/*{fromAddress? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
                     </InputsContainer>
                     {/*to*/}
@@ -134,7 +140,7 @@ function Booking(props) {
                                 handleInputChange('to', event)
                             }}/>
                         </div>
-                        {toAddress ? <div className="showAaddress">{toAddress.label}</div> : ''}
+                        {toAddress ? <div className="showAaddress">{toAddress.city}, {toAddress.street}</div> : ''}
                         {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
                     </InputsContainer>
                     {/*pickup... and return*/}
@@ -145,6 +151,7 @@ function Booking(props) {
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/Calendar.png')}/>
                                 <DatePicker
+                                    className={'react-datepicker-popper'}
                                     selected={date}
                                     onChange={(date) => setdate(date)}
                                     timeInputLabel="Time:"
@@ -167,6 +174,7 @@ function Booking(props) {
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/Calendar.png')}/>
                                 <DatePicker
+                                    className={'react-datepicker'}
                                     selected={date2}
                                     onChange={(date) => setdate2(date)}
                                     timeInputLabel="Time:"
