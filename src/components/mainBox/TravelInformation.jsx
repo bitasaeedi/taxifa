@@ -122,7 +122,7 @@ function TravelInformation(props) {
                             strokeWidth={6}
                             strokeWidthSecondary={6}
 
-                            />:'active'}
+                            />:'Online'}
                     </PaymentButton>
                     <PaymentButton color={'gray'} onClick={() => handlePayment('cash')}>
                         {loader?<Oval
