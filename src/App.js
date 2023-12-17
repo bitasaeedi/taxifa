@@ -11,7 +11,6 @@ import { useTranslation } from "react-i18next";
 import {useState} from "react";
 import MainPage from "./components/MainPage";
 import {Route, Router, Routes} from "react-router-dom";
-import Example from "./components/example";
 function App() {
     const { t, i18n: {changeLanguage, language} } = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState(language);
@@ -24,7 +23,6 @@ function App() {
         <>
           <Routes>
               <Route path={'/'} element={<MainPage handleLanguage={handleChangeLanguage} t={t}/>}/>
-              <Route path={'/e'} element={<Example/>}/>
               {/*<Route path={'/'} element={}/>*/}
           </Routes>
 
