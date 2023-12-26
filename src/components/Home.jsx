@@ -92,10 +92,10 @@ function handleMenu(){
                     <FsLightbox
                         toggler={lightboxController.toggler}
                         sources={[
-                            require('../public/car1.png'),
-                            require('../public/car2.png'),
-                            require('../public/car3.png'),
-                            require('../public/car4.png')
+                            require('../public/car1b.jpeg'),
+                            require('../public/car2b.jpeg'),
+                            require('../public/car3b.jpeg'),
+                            require('../public/car4b.jpeg')
                         ]}
                         sourceIndex={lightboxController.sourceIndex}
                     />

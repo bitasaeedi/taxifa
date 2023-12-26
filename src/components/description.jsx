@@ -90,10 +90,10 @@ function Description({t}) {
                     <FsLightbox
                         toggler={lightboxController.toggler}
                         sources={[
-                            require('../public/desc1.png'),
-                            require('../public/des2.png'),
-                            require('../public/des3.png'),
-                            require('../public/des4.png')
+                            require('../public/car1b.jpeg'),
+                            require('../public/car2b.jpeg'),
+                            require('../public/car3b.jpeg'),
+                            require('../public/car4b.jpeg')
                         ]}
                         sourceIndex={lightboxController.sourceIndex}
                     />
