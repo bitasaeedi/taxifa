@@ -191,12 +191,12 @@ function Luggage(props) {
                 {/*</LuggageOptionsBox>*/}
             </SecondContainer>
             <BottomPart>
-                <div onClick={()=>{props.transform(2)}}>
+                <div onClick={()=>{props.transform(1)}}>
                     <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
                     <div>{props.t('back')}</div>
                 </div>
 
-                <button onClick={()=>{handleSaveInfos();props.transform(4)}}>{props.t('next')}</button>
+                <button onClick={()=>{handleSaveInfos();props.transform(3)}}>{props.t('next')}</button>
             </BottomPart>
         </MainBoxContainer>
     );

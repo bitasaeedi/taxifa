@@ -74,9 +74,10 @@ export const MenuRight = styled.div`
   position: relative;
   z-index: 10;
   //flag
-  & > img:first-child {
-    width: 32px;
-    height: 18px;
+  & > img.flag {
+    width: 40px;
+    height: 22px;
+    
   }
 
   //arrow

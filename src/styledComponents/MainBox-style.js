@@ -186,10 +186,11 @@ export const SecondContainer = styled.div`
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
   width: 100%;
+  position: relative;
 
   & div.react-datepicker-popper {
-    transform: translate3d(34%,40%, 0px) !important;
-    
+    transform: translate3d(34%, 40%, 0px) !important;
+
   }
 
   & > div.input-label {
@@ -203,7 +204,7 @@ export const InputsContainer = styled.div`
     margin-right: .5rem;
     cursor: pointer;
   }
-  
+
   & > div.input {
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 0 .7rem;
@@ -245,16 +246,17 @@ export const InputsContainer = styled.div`
       font-size: .9rem;
 
     }
+
     & > div.input {
       padding: 0 .5rem;
 
     }
   }
-  @media (min-width: 380px){
-    & > div.input input{
+  @media (min-width: 380px) {
+    & > div.input input {
       min-height: 38px;
     }
-    
+
   }
 `
 export const InputsContainer2 = styled.div`
@@ -284,12 +286,14 @@ export const Luggage = styled.div`
   & > div:first-of-type {
     margin-right: 1.2rem;
   }
-  @media (min-width: 620px){
+
+  @media (min-width: 620px) {
     margin-top: .5rem;
     & > p {
       font-size: .85rem;
       margin: 0 2rem 0 .7rem;
     }
+
     & > div {
       font-size: .9rem;
     }
@@ -389,7 +393,8 @@ export const BottomPart = styled.div`
     border: 0;
     cursor: pointer;
   }
-  @media (min-width: 620px){
+
+  @media (min-width: 620px) {
     bottom: 0;
   }
 `
@@ -504,4 +509,18 @@ export const PaymentButton = styled.button`
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
+`
+export const AddressList = styled.div`
+  width: 100%;
+  background-color: white;
+  position: absolute;
+  z-index: 10;
+  max-height: 150px;
+  overflow-y: scroll;
+  &>div{
+    border-bottom: 1px solid black;
+    padding: .5rem;
+    font-size: .85rem;
+    cursor: pointer;
+  }
 `

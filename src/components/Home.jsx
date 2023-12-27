@@ -15,7 +15,7 @@ import Booking from "./mainBox/Booking";
 import {ToastContainer} from "react-toastify";
 
 function Home({t,handleLanguage}) {
-
+    const [flag,setFlag]=useState(true)
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
     const [menu, setMenu] = useState(false)
     const [transformWidth, setTransformWidth] = useState(0);
@@ -56,7 +56,7 @@ function handleMenu(){
 
                 <MenuRight>
 
-                    <img alt={'uk'} src={require('../public/flag.png')} onClick={handleLanguage}/>
+                    <img alt={'uk'} className={'flag'} src={flag?require('../public/netherlands.png'):require('../public/flag.png')} onClick={()=>{setFlag(!flag);handleLanguage()}}/>
                     <img alt={'arrow'} src={require('../public/arrow.png')}/>
 
                     <div>
@@ -105,9 +105,9 @@ function handleMenu(){
 
                 <HomeContentRightSide>
                     <HomeContentRightSideContainer translate={transformWidth}>
-                        <SelectServices transform={transform} t={t}/>
                         <Booking transform={transform} t={t}/>
                         <Luggage transform={transform} t={t}/>
+                        <SelectServices transform={transform} t={t}/>
                         <FillTheForm transform={transform} t={t}/>
                         <TravelInformation transform={transform} t={t}/>
                     </HomeContentRightSideContainer>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {
-    BottomPart,
-    Button,
+    AddressList,
+    BottomPart, Button,
     InputsContainer,
     InputsContainer2,
     Luggage,
@@ -18,69 +18,84 @@ import "react-datepicker/dist/react-datepicker.css";
 import {useAppContext} from "../context";
 
 function Booking(props) {
-    const {setTripInfo,loggageFlag,setLoggageFlag} = useAppContext();
+    const {setTripInfo,setLoggageFlag} = useAppContext();
     const [date, setdate] = useState(new Date());
     const [date2, setdate2] = useState(new Date());
     const [numberOfPassengar, setNumberOfPassengar] = useState();
+    const [fromContext,setFromContext]=useState();
+    const [toContext,setToContext]=useState();
+    const [inputType,setInputType]=useState(true)
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [fromInput, setFromInput] = useState('');
+    const [toInput, setToInput] = useState('');
+    const [fromAddress, setFromAddress] = useState();
+    const [toAddress, setToAddress] = useState();
+    const [Return, setReturn] = useState(false);
+    const [from,setFrom]=useState();
+    const [to,setTo]=useState();
+    const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
+    const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
 
     function handleSaveInfos() {
+
+        if(fromContext&&toContext){
         setTripInfo((info) => ({
             ...info,
             origin: {
-                postal_code: fromAddress.postcode+fromAddress.houseNumber.toString(),
-                lat: fromAddress.latitude,
-                lan: fromAddress.longitude,
-                address: fromAddress.city+fromAddress.street
+                // postal_code: fromContext.postcode+fromAddress.houseNumber.toString(),
+                postal_code: fromContext.address.postcode,
+                lat: fromContext.location.latitude,
+                lan: fromContext.location.longitude,
+                address: fromContext.address.locality
             },
             destination: {
-                postal_code: toAddress.postcode+toAddress.houseNumber.toString(),
-                lat: toAddress.latitude,
-                lan: toAddress.longitude,
-                address:toAddress.city+toAddress.street
+                postal_code: toContext.address.postcode,
+                lat:  toContext.location.latitude,
+                lan:  toContext.location.longitude,
+                address: toContext.address.locality
             },
             pickup_time: date,
             return: Return?"true":"false",
             return_time: Return?date2:"",
             number_of_passengers: numberOfPassengar
-        }));
-    }
+        }));}
 
-    const [selectedOption, setSelectedOption] = useState(null);
+    }
 
     const handleRadioChange = (event) => {
         setSelectedOption(event.target.value);
 
     };
 
-    const [fromInput, setFromInput] = useState('');
-    const [toInput, setToInput] = useState('');
-    const [fromAddress, setFromAddress] = useState('');
-    const [toAddress, setToAddress] = useState('');
-    const [Return, setReturn] = useState(false);
-    const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
-    const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
-
-    // const [date, setDate] = useState(new Date());
-
     function handleInputChange(type, event) {//save input value
-        console.log(type, event.target.value)
+
         if (type === 'from') {
             setFromInput(event.target.value);
+            setInputType(true)
         } else {
             setToInput(event.target.value)
+            setInputType(false)
         }
 
+    }
+    function handleDeleteAddress(type,event){
+        if (type === 'from'&& event.key === 'Backspace') {
+            setFrom(null)
+        }
+        else if(type === 'to'&& event.key === 'Backspace') {
+            setTo(null)
+        }
     }
 
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            if (fromInput) {
+            if (fromInput&&inputType) {
                 throttledSendRequest(fromInput);
             }
         }, 1000);
         const timer2 = setTimeout(() => {
-            if (toInput) {
+            if (toInput&&!inputType) {
                 throttledSendRequest2(toInput);
             }
         }, 1000);
@@ -91,10 +106,8 @@ function Booking(props) {
     }, [fromInput, toInput]);
 
     function sendRequest(value, type) {//send reqest
-        let code ;
-        type==="from"?code=fromInput:code=toInput;
-        if(code.length>6 ){
-        axios.get(`/trip/address/get-by-post-code/${code}`
+
+        axios.get(`/trip/autocomplete/post-code/${value}`
         ).then(function (response) {
                 if (type === 'from') {
                     setFromAddress(response.data.body)
@@ -109,7 +122,26 @@ function Booking(props) {
                 Toast('This address does not exist',false)
             }
         });
-        }
+
+    }
+    function sendContext(value, type) {//send reqest
+
+        axios.get(`/trip/address/details/${value}`
+        ).then(function (response) {
+            console.log(response)
+                if (type === 'from') {
+                    setFromContext(response.data.body)
+                } else {
+                    setToContext(response.data.body)
+                }
+            }
+        ).catch(function (error) {
+            console.error('Error:', error);
+            if(error.response){
+                Toast('This address does not exist',false)
+            }
+        });
+
     }
 
     return (
@@ -124,23 +156,47 @@ function Booking(props) {
                         <div className="input-label">{props.t('book2')}</div>
                         <div className="input">
                             <img alt={'icon'} src={require('../../public/form.png')}/>
-                            <input placeholder={props.t('book3')} value={fromInput} onChange={(event) => {
+                            <input placeholder={props.t('book3')} value={fromInput} onKeyDown={(event)=>handleDeleteAddress('from',event)}
+                                   onChange={(event) => {
                                 handleInputChange('from', event)
                             }}/>
                         </div>
-                        {fromAddress ? <div className="showAaddress">{fromAddress.city}, {fromAddress.street}</div> : ''}
-                        {/*{fromAddress? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
+                       <AddressList>
+                           {fromAddress?fromAddress.map((address,index)=>{
+                               return <div  onClick={()=>{
+                                   sendContext(address.context,'from')
+                                   setFrom(address);
+                                   setFromAddress(null);
+                               }} key={index} >
+                                   {address.value}
+                               </div>
+                           }):null}
+                       </AddressList>
+                        {from ? <div className="showAaddress">{from.value}</div> : ''}
+                        {/*{from? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
                     </InputsContainer>
                     {/*to*/}
                     <InputsContainer>
                         <div className="input-label">{props.t('book4')}</div>
                         <div className="input">
                             <img alt={'icon'} src={require('../../public/Group 3.png')}/>
-                            <input placeholder={props.t('book5')} value={toInput} onChange={(event) => {
+                            <input placeholder={props.t('book5')} value={toInput} onKeyDown={(event)=>handleDeleteAddress('from',event)}
+                                   onChange={(event) => {
                                 handleInputChange('to', event)
                             }}/>
                         </div>
-                        {toAddress ? <div className="showAaddress">{toAddress.city}, {toAddress.street}</div> : ''}
+                        <AddressList>
+                            {toAddress?toAddress.map((address,index)=>{
+                                return <div onClick={()=>{
+                                    sendContext(address.context,'to')
+                                    setTo(address);
+                                    setToAddress(null);
+                                }} key={index}>
+                                    {address.value}
+                                </div>
+                            }):null}
+                        </AddressList>
+                        {to ? <div className="showAaddress">{to.value}</div> : ''}
                         {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
                     </InputsContainer>
                     {/*pickup... and return*/}
@@ -214,24 +270,24 @@ function Booking(props) {
                     </Luggage>
 
                 </SecondContainer>
-                <BottomPart>
-                    <div onClick={()=>{props.transform(1)}}>
-                        <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
-                        <div>{props.t('back')}</div>
-                    </div>
+                {/*<BottomPart>*/}
+                    {/*<div onClick={()=>{props.transform(1)}}>*/}
+                    {/*    <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>*/}
+                    {/*    <div>{props.t('back')}</div>*/}
+                    {/*</div>*/}
 
-                    <button onClick={() => {
+                    <Button onClick={() => {
                         handleSaveInfos();
                         if (selectedOption === 'yes') {
                             setLoggageFlag(true)
-                            props.transform(3)
+                            props.transform(2)
                         } else {
                             setLoggageFlag(false)
-                            props.transform(4)
+                            props.transform(3)
                         }
 
-                    }}>{props.t('book12')}</button>
-                </BottomPart>
+                    }}>{props.t('book12')}</Button>
+                {/*</BottomPart>*/}
 
             </MainBoxContainer>
         </>
