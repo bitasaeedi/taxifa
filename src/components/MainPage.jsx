@@ -5,10 +5,12 @@ import Questions from "./Questions";
 import CustomersReview from "./CustomersReview";
 import ContactUs from "./contactUs";
 import Footer from "./Footer";
+import PersonInfo from "./personInfo";
 
 function MainPage({t,handleLanguage}) {
     return (
         <>
+            <PersonInfo/>
             <Home t={t} handleLanguage={handleLanguage}/>
             <Description t={t}/>
             <ServicesInfo t={t}/>

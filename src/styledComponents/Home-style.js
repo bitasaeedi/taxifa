@@ -1,11 +1,29 @@
 import styled from "styled-components";
 
+//person info
+export const PersonInfoContainer = styled.div`
+  background-color: black;
+  color: white;
+  font-size: .8rem;
+  padding: .8rem 3.5rem;
+  display: flex;
+  &>div{
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+  }
+  &>div>img{
+    width: 20px;
+    margin-right: .3rem;
+  }
+`
+
 export const HomeContainer = styled.div`
   position: relative;
   background-image: ${(props) => props.image};
   height: fit-content;
   background-size: 100% 120vh;
-padding: 0 0 3rem;
+  padding: 0 0 3rem;
   @media (min-width: 620px) {
     height: fit-content;
     background-size: 100% 91vh;
@@ -28,7 +46,7 @@ export const Menu = styled.div`
   justify-content: space-between;
   padding: 1.3rem 1.5rem;
   width: 100%;
-  @media (min-width: 620px){
+  @media (min-width: 620px) {
     padding: 2rem;
   }
 `
@@ -40,12 +58,13 @@ export const MenuLeft = styled.div`
   & > img {
     width: 42px;
   }
-  &>img.menu{
+
+  & > img.menu {
     width: 30px;
     margin-right: .6rem;
     position: relative;
     z-index: 10;
-    display:  ${(props) => (props.mobile? 'unset' : 'none')};
+    display: ${(props) => (props.mobile ? 'unset' : 'none')};
   }
 
   & > span {
@@ -77,7 +96,7 @@ export const MenuRight = styled.div`
   & > img.flag {
     width: 40px;
     height: 22px;
-    
+
   }
 
   //arrow
@@ -95,17 +114,19 @@ export const MenuRight = styled.div`
     margin-right: 2rem;
     align-items: center;
   }
-&>div>a{
-  padding: 0 .9rem;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-}
-  &>div>a:hover{
+
+  & > div > a {
+    padding: 0 .9rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+  }
+
+  & > div > a:hover {
     color: #FFB300;
     border-bottom: 1px solid #FFB300;
     padding-bottom: .05rem;
-   
+
   }
 
   & > div > div.bookBtn {
@@ -113,22 +134,23 @@ export const MenuRight = styled.div`
     padding: .5rem 1rem;
     border-radius: 6px;
     font-size: .85rem;
-   cursor: pointer;
+    cursor: pointer;
     margin-left: 1.3rem;
   }
 
   @media (min-width: 620px) {
     display: flex;
-    &>div>a{
+    & > div > a {
       padding: 0 .4rem;
       margin: 0 .4rem;
     }
   }
   @media (min-width: 1200px) {
-    &>div>a{
+    & > div > a {
       padding: 0 .8rem;
       margin: 0 .5rem;
     }
+
     & > div > div.bookBtn {
       padding: .5rem 1.1rem;
       font-size: .9rem;
@@ -157,6 +179,7 @@ export const HomeContentLeftSide = styled.div`
   width: 90%;
   margin: 0 auto 0;
   padding: 6rem 0 2rem;
+
   & > h1 {
     color: #E9E9E9;
     margin-bottom: 1.9rem;
@@ -173,10 +196,12 @@ export const HomeContentLeftSide = styled.div`
     color: rgba(255, 255, 255, 0.60);
     font-size: 1rem;
   }
-  &>div.images{
+
+  & > div.images {
     display: flex;
     justify-content: space-between;
   }
+
   & > div.images > img {
     margin: 3rem 0 0 0;
     border-radius: 5px;
@@ -193,33 +218,36 @@ export const HomeContentLeftSide = styled.div`
       font-weight: 600;
       line-height: 3.4rem;
     }
-    
+
     & > div {
       font-size: 1rem;
       font-weight: 300;
       line-height: 1.5rem;
     }
 
-    &>div.images{
+    & > div.images {
       display: block;
       justify-content: space-between;
     }
+
     & > div.images > img {
       margin: 2rem .9rem 0 0;
       width: 70px;
       height: 70px;
     }
   }
-  @media (min-width: 1200px){
+  @media (min-width: 1200px) {
     width: 44%;
     & > div.images > img {
       margin: 2rem 1.2rem 0 0;
       width: 80px;
       height: 80px;
     }
+
     & > h1 {
       font-size: 3.1rem;
     }
+
     & > div {
       font-size: 1.1rem;
     }
@@ -227,7 +255,7 @@ export const HomeContentLeftSide = styled.div`
 `
 
 export const HomeContentRightSide = styled.div`
-  width:310px;
+  width: 310px;
   height: 495px;
   border: 1px solid #FFB300;
   border-radius: 10px;
@@ -239,8 +267,9 @@ export const HomeContentRightSide = styled.div`
   box-shadow: 4px 4px 25px 0 rgba(0, 0, 0, 0.6);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
-  overflow-x:hidden;
+  overflow-x: hidden;
   position: relative;
+
   & > h6 {
     color: #FFB300;
     font-size: 1rem;
@@ -251,7 +280,8 @@ export const HomeContentRightSide = styled.div`
     margin: 1rem 0 2.2rem;
     font-size: .95rem;
   }
-  &>a{
+
+  & > a {
     color: #2cb4aa;
     font-size: .9rem;
     font-weight: 400;
@@ -259,8 +289,9 @@ export const HomeContentRightSide = styled.div`
     margin-top: 3rem;
     display: inline-block;
   }
-  @media (min-width: 380px){
-    width:360px;
+
+  @media (min-width: 380px) {
+    width: 360px;
   }
   @media (min-width: 620px) {
     width: 400px;
@@ -276,14 +307,15 @@ export const HomeContentRightSide = styled.div`
       font-size: .9rem;
       margin: 1.2rem 0 2.2rem;
     }
-    &>a{
+
+    & > a {
       font-size: .75rem;
       font-weight: 400;
     }
   }
 
 `
-export  const HomeContentRightSideContainer = styled.div`
+export const HomeContentRightSideContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
