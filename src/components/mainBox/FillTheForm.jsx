@@ -21,7 +21,7 @@ function FillTheForm(props) {
                 console.log(response.data)
                 setResponse(response.data.body)
             setLoader(false)
-            props.transform(5);
+            props.transform(4);
             }
         ).catch(function (error) {
             setLoader(false)
@@ -120,10 +120,10 @@ function FillTheForm(props) {
             <BottomPart>
                 <div onClick={() => {
                     if(loggageFlag){
-                        props.transform(3)
+                        props.transform(2)
                     }
                     else {
-                        props.transform(2)
+                        props.transform(1)
                     }
 
                 }}>

@@ -104,7 +104,7 @@ function handleMenu(){
                     <HomeContentRightSideContainer translate={transformWidth}>
                         <Booking transform={transform} t={t}/>
                         <Luggage transform={transform} t={t}/>
-                        <SelectServices transform={transform} t={t}/>
+                        {/*<SelectServices transform={transform} t={t}/>*/}
                         <FillTheForm transform={transform} t={t}/>
                         <TravelInformation transform={transform} t={t}/>
                     </HomeContentRightSideContainer>

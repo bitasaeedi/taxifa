@@ -97,7 +97,7 @@ function TravelInformation(props) {
 
                 <BottomPart>
                     <div onClick={() => {
-                        props.transform(4)
+                        props.transform(3)
                     }}>
                         <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
                         <div>Back</div>

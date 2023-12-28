@@ -7,7 +7,7 @@ function AppProvider ({ children }) {
     let [tripInfo,setTripInfo]=useState({
         passenger: {//
         },
-        type:"",//
+        type:"airport",//
         origin: {//
         },
         destination: {//
