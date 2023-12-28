@@ -11,48 +11,42 @@ function Questions({t}) {
                         <div className={'number'}>1</div>
                         <div className={'text'}>
                             <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <p className={'answer'}>{t('awnser1')}</p>
                         </div>
                     </Question>
                     <Question>
-                        <div className={'number'}>1</div>
+                        <div className={'number'}>2</div>
                         <div className={'text'}>
-                            <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <h6 className={'question'}>{t("FAQ3")}</h6>
+                            <p className={'answer'}>{t('awnser2')}</p>
                         </div>
                     </Question>
                     <Question>
-                        <div className={'number'}>1</div>
+                        <div className={'number'}>3</div>
                         <div className={'text'}>
-                            <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <h6 className={'question'}>{t("FAQ4")}</h6>
+                            <p className={'answer'}>{t('awnser3')}</p>
                         </div>
                     </Question>
                     <Question>
-                        <div className={'number'}>1</div>
+                        <div className={'number'}>4</div>
                         <div className={'text'}>
-                            <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <h6 className={'question'}>{t("FAQ5")}</h6>
+                            <p className={'answer'}>{t('awnser4')}</p>
                         </div>
                     </Question>
                     <Question>
-                        <div className={'number'}>1</div>
+                        <div className={'number'}>5</div>
                         <div className={'text'}>
-                            <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <h6 className={'question'}>{t("FAQ6")}</h6>
+                            <p className={'answer'}>{t('awnser5')}</p>
                         </div>
                     </Question>
                     <Question>
-                        <div className={'number'}>1</div>
+                        <div className={'number'}>6</div>
                         <div className={'text'}>
-                            <h6 className={'question'}>{t("FAQ2")}</h6>
-                            <p className={'answer'}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor.</p>
+                            <h6 className={'question'}>{t("FAQ7")}</h6>
+                            <p className={'answer'}>{t('awnser6')}</p>
                         </div>
                     </Question>
 

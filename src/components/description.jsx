@@ -20,31 +20,31 @@ function Description({t}) {
                         <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
                             <h6>{t('descriptinItems1')}</h6>
-                            <div>Lorem ipsum dolor</div>
+                            <div>{t('description1')}</div>
                         </div>
                     </div>
 
                     <div>
-                        <img alt='icon' src={require('../public/descript1.png')}/>
+                        <img alt='icon' src={require('../public/descript2.png')}/>
                         <div>
                             <h6>{t('descriptinItems2')}</h6>
-                            <div>Lorem ipsum dolor</div>
+                            <div>{t('description2')}</div>
                         </div>
                     </div>
 
                     <div>
-                        <img alt='icon' src={require('../public/descript1.png')}/>
+                        <img alt='icon' src={require('../public/descript3.png')}/>
                         <div>
                             <h6>{t('descriptinItems3')}</h6>
-                            <div>Lorem ipsum dolor</div>
+                            <div>{t('description3')}</div>
                         </div>
                     </div>
 
                     <div>
-                        <img alt='icon' src={require('../public/descript1.png')}/>
+                        <img alt='icon' src={require('../public/descript4.png')}/>
                         <div>
                             <h6>{t('descriptinItems4')}</h6>
-                            <div>Lorem ipsum dolor</div>
+                            <div>{t('description4')}</div>
                         </div>
                     </div>
                 </Attributes>
@@ -54,11 +54,7 @@ function Description({t}) {
                     {/* left side */}
                     <DescriptionLeftSide>
                         <h2>{t('descriptinItems5')}</h2>
-                        <p>Lorem ipsum dolor sit amet. A doloribus odio sed accusamus molestiae
-                            sit earum adipisci et quos obcaecati ut dolores commodi 33 ipsam omnis.
-                            33 labore impedit hic tenetur omnis aut sapiente aspernatur et repudiandae nostrum et quae
-                            consectetur et pariatur ipsa.
-                        </p>
+                        <p>{t('descriptinItems7')}</p>
 
                         <Infos>
                             <div>

@@ -50,13 +50,13 @@ function handleMenu(){
                     <img alt={'Taxifa'} className={'menu'} onClick={()=>{
                         handleMenu();
                         console.log(menu)}} src={require('../public/menu.png')}/>
-                    <img alt={'Taxifa'} src={require('../public/taxi.png')}/>
+                    <img alt={'Taxifa'} src={require('../public/taxicentral2.png')}/>
                     <span className={'Irish_font'}>TaxiFa</span>
                 </MenuLeft>
 
                 <MenuRight>
 
-                    <img alt={'uk'} className={'flag'} src={flag?require('../public/netherlands.png'):require('../public/flag.png')} onClick={()=>{setFlag(!flag);handleLanguage()}}/>
+                    <img alt={'uk'} className={'flag'} src={flag?require('../public/flag.png'):require('../public/netherlands.png')} onClick={()=>{setFlag(!flag);handleLanguage()}}/>
                     <img alt={'arrow'} src={require('../public/arrow.png')}/>
 
                     <div>
@@ -79,10 +79,7 @@ function handleMenu(){
                 {/* left side */}
                 <HomeContentLeftSide>
                     <h1 dangerouslySetInnerHTML={{ __html: t('homeTitle') }}/>
-                    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
+                    <div>{t('homeDesc')}</div>
                     <div className='images'>
                         <img alt={'car'} src={require('../public/car1.png')} onClick={() => openLightbox(0)}/>
                         <img alt={'car'} src={require('../public/car2.png')} onClick={() => openLightbox(1)}/>

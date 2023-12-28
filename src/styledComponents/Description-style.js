@@ -65,8 +65,8 @@ export const Attributes = styled.div`
   @media (min-width: 1300px) {
     gap: 0 10px;
     & > div > img {
-      width: 59px;
-      height: 34px;
+      width: 40px;
+      height: 38px;
     }
 
     & > div > div > h6 {

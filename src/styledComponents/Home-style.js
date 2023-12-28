@@ -75,8 +75,8 @@ export const MenuLeft = styled.div`
   @media (min-width: 620px) {
     padding: 0 1.8rem;
     & > img {
-      width: 46px;
-      height: 36px;
+      width: 60px;
+      height: 40px;
     }
 
     & > span {
@@ -178,7 +178,7 @@ export const HomeContentLeftSide = styled.div`
   height: auto;
   width: 90%;
   margin: 0 auto 0;
-  padding: 6rem 0 2rem;
+  padding: 4rem 0 2rem;
 
   & > h1 {
     color: #E9E9E9;
@@ -210,7 +210,7 @@ export const HomeContentLeftSide = styled.div`
   }
 
   @media (min-width: 620px) {
-    margin-top: 11rem;
+    margin-top: 9rem;
     width: 70%;
     & > h1 {
       margin-bottom: 1.5rem;
