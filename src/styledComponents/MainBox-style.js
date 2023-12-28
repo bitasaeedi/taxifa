@@ -95,7 +95,6 @@ export const SelectServicesBox = styled.div`
   }
 `
 
-
 export const MainBoxContainer = styled.div`
   text-align: left;
   padding: 1.5rem 1.7rem;
@@ -186,7 +185,8 @@ export const SecondContainer = styled.div`
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
   width: 100%;
-  position: relative;
+
+  position: ${(props) => (props.position? 'unset' : 'relative')};
 
   & div.react-datepicker-popper {
     transform: translate3d(34%, 40%, 0px) !important;

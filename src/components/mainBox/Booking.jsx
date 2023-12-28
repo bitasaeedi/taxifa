@@ -223,7 +223,7 @@ function Booking(props) {
                     {/*pickup... and return*/}
                     <InputsContainer2>
 
-                        <InputsContainer>
+                        <InputsContainer position>
                             <div className="input-label">{props.t('book6')}</div>
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/Calendar.png')}/>
@@ -238,7 +238,7 @@ function Booking(props) {
                             </div>
                         </InputsContainer>
 
-                        <InputsContainer return={Return}>
+                        <InputsContainer return={Return} position>
 
                             <div className="input-label">
                                 <input type={'radio'} onClick={(event) => {
@@ -298,13 +298,20 @@ function Booking(props) {
                 {/*</div>*/}
 
                 <Button onClick={() => {
-                    handleSaveInfos();
-                    if (selectedOption === 'yes') {
-                        setLoggageFlag(true)
-                        props.transform(2)
-                    } else {
-                        setLoggageFlag(false)
-                        props.transform(3)
+
+                    if(fromInput&&toInput&&numberOfPassengar){
+                        handleSaveInfos();
+                        if (selectedOption === 'yes') {
+                            setLoggageFlag(true)
+                            props.transform(2)
+                        } else {
+                            setLoggageFlag(false)
+                            props.transform(3)
+                        }
+
+                    }
+                    else{
+                        Toast('please fill out the forms',false);
                     }
 
                 }}>{props.t('book12')}</Button>
