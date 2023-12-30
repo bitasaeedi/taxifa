@@ -1,23 +1,34 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Attributes, Descript, DescriptionContainer, DescriptionLeftSide,
     DescriptionRightSide, Infos
 } from "../styledComponents/Description-style";
 import FsLightbox from "fslightbox-react";
+import axios from "./axios";
 
 function Description({t}) {
     const [lightboxController, setLightboxController] = useState({toggler: false, sourceIndex: 0,});
-
+    let [infos,setInfos]=useState();
     function openLightbox(sourceIndex) {
         setLightboxController({toggler: !lightboxController.toggler, sourceIndex});
     }
-
+    useEffect(()=>{
+        axios.get(`/trip/get-general-information/taxi-trip-passenger`
+        ).then(function (response) {
+                console.log(response.data)
+                setInfos(response.data.body);
+            }
+        ).catch(function (error) {
+            console.error('Error:', error);
+            // Toast(error.response.data.message, false);
+        });
+    },[])
     return (
         <>
             <DescriptionContainer id={'about'}>
                 <Attributes>
                     <div>
-                        <img alt='icon' src={require('../public/descript1.png')}/>
+                        <img alt='icon' src={require('../public/descript2.png')}/>
                         <div>
                             <h6>{t('descriptinItems1')}</h6>
                             <div>{t('description1')}</div>
@@ -25,7 +36,7 @@ function Description({t}) {
                     </div>
 
                     <div>
-                        <img alt='icon' src={require('../public/descript2.png')}/>
+                        <img alt='icon' src={require('../public/descript1.png')}/>
                         <div>
                             <h6>{t('descriptinItems2')}</h6>
                             <div>{t('description2')}</div>
@@ -58,16 +69,17 @@ function Description({t}) {
 
                         <Infos>
                             <div>
-                                <h6>150+</h6>
-                                <div>Lorem</div>
+                                <h6 onClick={()=>{
+                                    console.log(infos)}}>20+</h6>
+                                <div>steden</div>
                             </div>
                             <div className='center'>
                                 <h6>4</h6>
-                                <div>Lorem</div>
+                                <div>chauffeurs</div>
                             </div>
                             <div>
-                                <h6>1300+</h6>
-                                <div>Lorem</div>
+                                <h6>2000+</h6>
+                                <div>reizen</div>
                             </div>
                         </Infos>
                     </DescriptionLeftSide>

@@ -3,7 +3,6 @@ import styled from "styled-components";
 //person info
 export const PersonInfoContainer = styled.div`
   background-color: black;
-  color: white;
   font-size: .8rem;
   padding: .8rem 3.5rem;
   display: flex;
@@ -16,6 +15,11 @@ export const PersonInfoContainer = styled.div`
     width: 20px;
     margin-right: .3rem;
   }
+  &>div>a{
+    text-decoration: none;
+    color: white;
+  }
+  
 `
 
 export const HomeContainer = styled.div`

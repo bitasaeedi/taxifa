@@ -7,11 +7,11 @@ function PersonInfo(props) {
             <PersonInfoContainer>
                 <div>
                     <img alt={'message'} src={require('../public/Message.png')}/>
-                    <div>taxicentraals@gmail.com</div>
+                    <a href={'mailto:taxicentraals@gmail.com'}>taxicentraals@gmail.com</a>
                 </div>
                 <div>
                     <img alt={'calling'} src={require('../public/Calling.png')}/>
-                    <div>0633939345</div>
+                    <a href={'tel:0633939345'}>0633939345</a>
                 </div>
             </PersonInfoContainer>
         </>

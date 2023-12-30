@@ -51,7 +51,7 @@ function handleMenu(){
                         handleMenu();
                         console.log(menu)}} src={require('../public/menu.png')}/>
                     <img alt={'Taxifa'} src={require('../public/taxicentral2.png')}/>
-                    <span className={'Irish_font'}>TaxiFa</span>
+                    <span className={'Irish_font'}>Taxicentraal</span>
                 </MenuLeft>
 
                 <MenuRight>

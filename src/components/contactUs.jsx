@@ -6,21 +6,21 @@ function ContactUs({t}) {
         <>
             <ContactUsContainer id={'contact'}>
                 <h2>{t('Contact1')}</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
+                <p> </p>
 
                 <ContactsInfo>
                     <img src={require('../public/Message.png')} alt={'icon'}/>
-                    <div>rezamafakheri@gmail.com</div>
+                    <a href={'mailto:taxicentraals@gmail.com'}>taxicentraals@gmail.com</a>
                 </ContactsInfo>
 
                 <ContactsInfo>
                     <img src={require('../public/Calling.png')} alt={'icon'}/>
-                    <div>+98918 518 0915</div>
+                    <a href={'tel:0633939345'}>0633939345</a>
                 </ContactsInfo>
 
                 <ContactsInfo>
                     <img src={require('../public/Location.png')} alt={'icon'}/>
-                    <div>Lorem ipsum dolor sit amet, consectetur</div>
+                    <div>Kalmos 7 3824 WH. Amersfoort</div>
                 </ContactsInfo>
 
                 <Form>

@@ -47,11 +47,11 @@ export const AllServicesContainer = styled.div`
     display: flex;
     margin: 0 7.5rem;
     grid-template-columns: 1fr 1fr;
-    top: 8rem;
+    top: 5rem;
     gap: 10px;
      }
   @media (min-width: 1200px){
-    top: 10rem;
+    top: 6rem;
   }
 `
 export const Service = styled.div`

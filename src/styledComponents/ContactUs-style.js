@@ -49,6 +49,13 @@ export const ContactsInfo = styled.div`
     font-size: 1.05rem;
     font-weight: 400;
   }
+  &>a{
+    padding-left: 1rem;
+    color: #454545;
+    font-size: 1.05rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
 `
 export const Form = styled.div`
   position: static;
