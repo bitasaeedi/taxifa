@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const PersonInfoContainer = styled.div`
   background-color: black;
   font-size: .8rem;
-  padding: .8rem 3.5rem;
+  padding: .8rem 1.5rem;
   display: flex;
   &>div{
     display: flex;
@@ -18,6 +18,9 @@ export const PersonInfoContainer = styled.div`
   &>div>a{
     text-decoration: none;
     color: white;
+  }
+  @media (min-width: 620px) {
+    padding: .8rem 3.5rem;
   }
   
 `
