@@ -6,7 +6,7 @@ function Footer({t}) {
     return (
         <>
             <FooterContainer>
-                <h6 className={'Irish_font'}>TaxiFa</h6>
+                <h6 className={'Irish_font'}>Taxicentraal</h6>
 
                 <Links>
                     <a href={'#home'} >{t('Home')}</a>

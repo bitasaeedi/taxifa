@@ -10,6 +10,7 @@ import {useAppContext} from "../context";
 import axios from "../axios";
 import {Toast} from "../toast";
 import {Oval} from "react-loader-spinner";
+import Swal from 'sweetalert2'
 
 function TravelInformation(props) {
     const [paymentIsOpen, setPaymentIsOpen] = useState(false);
@@ -39,7 +40,11 @@ function TravelInformation(props) {
             if(type==='online'){
                 window.location.replace(response.data.body.url);
             }else{
-                Toast('we send an email for you',true)
+                Swal.fire({
+                    title: "DONE!",
+                    text: "We send you an email",
+                    icon: "success"
+                });
             }
 
             }

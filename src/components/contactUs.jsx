@@ -20,7 +20,7 @@ function ContactUs({t}) {
 
                 <ContactsInfo>
                     <img src={require('../public/Location.png')} alt={'icon'}/>
-                    <div>Kalmos 7 3824 WH. Amersfoort</div>
+                    <div>Varenstraat 368 3765 WZ Soest</div>
                 </ContactsInfo>
 
                 <Form>
