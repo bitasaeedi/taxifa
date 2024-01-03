@@ -43,8 +43,12 @@ function TravelInformation(props) {
                 Swal.fire({
                     title: "DONE!",
                     text: "We send you an email",
-                    icon: "success"
+                    icon: "success",
+                    confirmButtonText: "Back to home"
+                }).then((result) => {
+                    window.location.reload();
                 });
+
             }
 
             }
