@@ -48,10 +48,10 @@ function handleMenu(){
                 <MobileMenu t={t} menu={menu} handleMenu={handleMenu}/>
                 <MenuLeft mobile={!isdesc} >
                     <img alt={'Taxifa'} className={'menu'} onClick={()=>{
-                        handleMenu();
-                        console.log(menu)}} src={require('../public/menu.png')}/>
+                        handleMenu();}} src={require('../public/menu.png')}/>
                     <img alt={'Taxifa'} src={require('../public/taxicentral2.png')}/>
                     <span className={'Irish_font'}>Taxicentraal</span>
+                    <img alt={'uk'} className={'flag'} src={flag?require('../public/flag.png'):require('../public/netherlands.png')} onClick={()=>{setFlag(!flag);handleLanguage()}}/>
                 </MenuLeft>
 
                 <MenuRight>

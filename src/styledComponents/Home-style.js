@@ -6,23 +6,27 @@ export const PersonInfoContainer = styled.div`
   font-size: .8rem;
   padding: .8rem 1.5rem;
   display: flex;
-  &>div{
+
+  & > div {
     display: flex;
     align-items: center;
     margin-right: 2rem;
   }
-  &>div>img{
+
+  & > div > img {
     width: 20px;
     margin-right: .3rem;
   }
-  &>div>a{
+
+  & > div > a {
     text-decoration: none;
     color: white;
   }
+
   @media (min-width: 620px) {
     padding: .8rem 3.5rem;
   }
-  
+
 `
 
 export const HomeContainer = styled.div`
@@ -79,11 +83,23 @@ export const MenuLeft = styled.div`
     font-size: 1.2rem;
   }
 
+  & > img.flag {
+    display: inline-block;
+    width: 35px;
+    margin-left: 1rem;
+    position: relative;
+    z-index: 10;
+  }
+
   @media (min-width: 620px) {
     padding: 0 1.8rem;
     & > img {
       width: 60px;
       height: 40px;
+    }
+
+    & > img.flag {
+      display: none;
     }
 
     & > span {
