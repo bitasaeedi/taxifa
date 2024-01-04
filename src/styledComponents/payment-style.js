@@ -5,20 +5,30 @@ export const PaymentContainer = styled.div`
   color: white;
   padding: 3rem 0 0 ;
   &>h6{
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
   }
   &>img{
-    width: 150px;
+    width: 40px;
     margin-left: auto;
     margin-right: auto;
     display: block;
     margin-bottom: 3rem;
   }
+  &>a{
+    border: 1px solid #FFB300;
+    text-decoration: none;
+    color: white;
+    padding: .5rem;
+    border-radius: 10px;
+    margin: 2rem  auto 0;
+    display: block;
+    width: fit-content;
+  }
   @media (min-width: 620px) {
     padding: 8rem 0 0 ;
     &>img{
-      width:300px;
+      width:150px;
      
     }
   }

@@ -9,7 +9,8 @@ function Cancle({t,handleLanguage}) {
             <PersonInfo/>
             <PaymentContainer>
                 <img src={require('../public/x.png')} alt=''/>
-                <h6>it was failed</h6>
+                <h6>Payment was failed</h6>
+                <a href={'https://taxicentraalsoest.nl'}>Back to home</a>
             </PaymentContainer>
             <Footer t={t}/>
         </>

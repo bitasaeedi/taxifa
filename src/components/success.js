@@ -9,7 +9,9 @@ function Success({t,handleLanguage}) {
             <PersonInfo/>
             <PaymentContainer>
                 <img src={require('../public/tick.png')} alt=''/>
-                <h6>it was successful</h6>
+                <h6>Payment was successful</h6>
+                <a href={'https://taxicentraalsoest.nl'}>Back to home</a>
+
             </PaymentContainer>
             <Footer t={t}/>
         </>
