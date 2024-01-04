@@ -11,6 +11,8 @@ import { useTranslation } from "react-i18next";
 import {useState} from "react";
 import MainPage from "./components/MainPage";
 import {Route, Router, Routes} from "react-router-dom";
+import Success from "./components/success";
+import Cancle from "./components/cancle";
 function App() {
     const { t, i18n: {changeLanguage, language} } = useTranslation();
     const [currentLanguage, setCurrentLanguage] = useState(language);
@@ -23,7 +25,8 @@ function App() {
         <>
           <Routes>
               <Route path={'/'} element={<MainPage handleLanguage={handleChangeLanguage} t={t}/>}/>
-              {/*<Route path={'/'} element={}/>*/}
+              <Route path={'/payment/successful'} element={<Success handleLanguage={handleChangeLanguage} t={t}/>} />
+              <Route path={'/payment/cancle'} element={<Cancle handleLanguage={handleChangeLanguage} t={t}/>} />
           </Routes>
 
         </>
