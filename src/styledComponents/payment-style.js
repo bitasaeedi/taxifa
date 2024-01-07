@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const PaymentContainer = styled.div`
   background-color: black;
   color: white;
-  padding: 3rem 0 0 ;
+  padding: 10rem 0 5rem ;
+  min-height: 70vh;
   &>h6{
     font-size: 1.5rem;
     text-align: center;

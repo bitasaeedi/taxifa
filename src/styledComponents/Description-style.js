@@ -37,7 +37,7 @@ export const Attributes = styled.div`
   }
 
   & > div > img {
-    width: 32px;
+    width: 23px;
     height: 20px;
   }
 

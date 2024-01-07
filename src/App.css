@@ -68,3 +68,6 @@ input[type='radio']:before {
 .react-datepicker-popper[data-placement^=bottom] .react-datepicker__triangle::before{
     border: 0;
 }
+body{
+    min-height: 100vh;
+}

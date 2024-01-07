@@ -207,7 +207,7 @@ export const InputsContainer = styled.div`
 
   & > div.input {
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 0 .7rem;
+    padding:${(props) => (props.position? 'none' : '0 .7rem')};
     display: flex;
     align-items: center;
     border-radius: 8px;
@@ -239,6 +239,17 @@ export const InputsContainer = styled.div`
     margin-top: .5rem;
     font-size: .8rem;
   }
+  &>div.input>div>div>input{
+    padding: 0;
+    outline: none;
+    border: none;
+  }
+  
+  &>div.input>div{
+    outline: none;
+    border: none;
+  }
+  
 
   @media (min-width: 620px) {
     margin-bottom: 1rem;

@@ -16,11 +16,14 @@ import {ToastContainer} from "react-toastify";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import {useAppContext} from "../context";
-
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
+import dayjs from 'dayjs';
 function Booking(props) {
     const {setTripInfo, setLoggageFlag} = useAppContext();
-    const [date, setdate] = useState(new Date());
-    const [date2, setdate2] = useState(new Date());
+    const [date, setdate] = useState(null);
+    const [date2, setdate2] = useState(null);
     const [numberOfPassengar, setNumberOfPassengar] = useState();
     const [fromContext, setFromContext] = useState();
     const [toContext, setToContext] = useState();
@@ -56,9 +59,9 @@ function Booking(props) {
                     address: toContext.address.country+' '+toContext.address.locality+' '+toContext.address.street
 
         },
-                pickup_time: date,
+                pickup_time: date.$d,
                 return: Return ? "true" : "false",
-                return_time: Return ? date2 : "",
+                return_time: Return ? date2.$d : "",
                 number_of_passengers: numberOfPassengar
             }));
         }
@@ -226,15 +229,11 @@ function Booking(props) {
                         <InputsContainer position>
                             <div className="input-label">{props.t('book6')}</div>
                             <div className="input">
-                                <img alt={'icon'} src={require('../../public/Calendar.png')}/>
-                                <DatePicker
-                                    className={'react-datepicker-popper'}
-                                    selected={date}
-                                    onChange={(date) => setdate(date)}
-                                    timeInputLabel="Time:"
-                                    dateFormat="MM/dd/yyyy h:mm aa"
-                                    showTimeInput
-                                />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <MobileDateTimePicker
+                                        value={date}
+                                        onChange={(newValue)=>{setdate(newValue)}} />
+                                </LocalizationProvider>
                             </div>
                         </InputsContainer>
 
@@ -249,15 +248,12 @@ function Booking(props) {
                                 }}/>{props.t('book7')}
                             </div>
                             <div className="input">
-                                <img alt={'icon'} src={require('../../public/Calendar.png')}/>
-                                <DatePicker
-                                    className={'react-datepicker'}
-                                    selected={date2}
-                                    onChange={(date) => setdate2(date)}
-                                    timeInputLabel="Time:"
-                                    dateFormat="MM/dd/yyyy h:mm aa"
-                                    showTimeInput
-                                />
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                    <MobileDateTimePicker
+                                        value={date2}
+                                        onChange={(newValue)=>{setdate2(newValue)}}
+                                        />
+                                </LocalizationProvider>
                             </div>
                         </InputsContainer>
 
