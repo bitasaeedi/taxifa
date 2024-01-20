@@ -184,7 +184,7 @@ export const SecondContainer = styled.div`
 //booking
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
-  width: 100%;
+  width:${(props) => (props.width? props.width : '100%')};;
 
   position: ${(props) => (props.position? 'unset' : 'relative')};
 
@@ -275,6 +275,15 @@ export const InputsContainer2 = styled.div`
 
   & > div:first-child {
     margin-right: 1.5rem;
+  }
+`
+export const InputsContainer3 = styled.div`
+  display: flex;
+
+  & > div:first-child {
+    width: 200%;
+
+    margin-right: .7rem;
   }
 `
 export const Luggage = styled.div`

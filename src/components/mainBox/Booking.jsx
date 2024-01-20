@@ -3,7 +3,7 @@ import {
     AddressList,
     Button,
     InputsContainer,
-    InputsContainer2,
+    InputsContainer2, InputsContainer3,
     Luggage,
     MainBoxContainer,
     SecondContainer
@@ -36,8 +36,11 @@ function Booking(props) {
     const [Return, setReturn] = useState(false);
     const [from, setFrom] = useState();
     const [to, setTo] = useState();
+    const [fromHouseNumber, setFromHouseNumber] = useState("");
+    const [toHouseNumber, setToHouseNumber] = useState("");
     const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
     const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
+
 
     //save travel info in context
     function handleSaveInfos() {
@@ -50,12 +53,14 @@ function Booking(props) {
                     postal_code: fromContext.address.postcode,
                     lat: fromContext.location.latitude,
                     lan: fromContext.location.longitude,
+                    house_number:fromHouseNumber,
                     address: fromContext.address.country+' '+fromContext.address.locality+' '+fromContext.address.street
                 },
                 destination: {
                     postal_code: toContext.address.postcode,
                     lat: toContext.location.latitude,
                     lan: toContext.location.longitude,
+                    house_number:toHouseNumber,
                     address: toContext.address.country+' '+toContext.address.locality+' '+toContext.address.street
 
         },
@@ -174,55 +179,78 @@ function Booking(props) {
                 <SecondContainer>
 
                     {/*from*/}
-                    <InputsContainer>
-                        <div className="input-label">{props.t('book2')}</div>
-                        <div className="input">
-                            <img alt={'icon'} src={require('../../public/form.png')}/>
-                            <input placeholder={props.t('book3')} value={fromInput}
-                                   onKeyDown={(event) => handleDeleteAddress('from', event)}
-                                   onChange={(event) => {
-                                       handleInputChange('from', event)
-                                   }}/>
-                        </div>
-                        <AddressList>
-                            {fromAddress ? fromAddress.map((address, index) => {
-                                return <div onClick={() => {
-                                    sendContext(address, 'from', fromInput)
-                                    setFrom(address);
-                                    setFromAddress(null);
-                                }} key={index}>
-                                    {address.value}
-                                </div>
-                            }) : null}
-                        </AddressList>
-                        {from ? <div className="showAaddress">{from.value}</div> : ''}
-                        {/*{from? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
-                    </InputsContainer>
+                    <InputsContainer3>
+                        <InputsContainer width={'60%'}>
+                            <div className="input-label">{props.t('book2')}</div>
+                            <div className="input">
+                                <img alt={'icon'} src={require('../../public/form.png')}/>
+                                <input placeholder={props.t('book3')} value={fromInput}
+                                       onKeyDown={(event) => handleDeleteAddress('from', event)}
+                                       onChange={(event) => {
+                                           handleInputChange('from', event)
+                                       }}/>
+                            </div>
+                            <AddressList>
+                                {fromAddress ? fromAddress.map((address, index) => {
+                                    return <div onClick={() => {
+                                        sendContext(address, 'from', fromInput)
+                                        setFrom(address);
+                                        setFromAddress(null);
+                                    }} key={index}>
+                                        {address.value}
+                                    </div>
+                                }) : null}
+                            </AddressList>
+                            {from ? <div className="showAaddress">{from.value}</div> : ''}
+                            {/*{from? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
+                        </InputsContainer>
+                        <InputsContainer width={'38%'}>
+                            <div className="input-label" style={{visibility:"hidden"}}>m </div>
+                            <div className="input">
+                                <input placeholder={'.No'} value={fromHouseNumber}
+                                       onChange={(event) => {
+                                           setFromHouseNumber(event.target.value)
+                                       }}/>
+                            </div>
+                        </InputsContainer>
+                    </InputsContainer3>
+
                     {/*to*/}
-                    <InputsContainer>
-                        <div className="input-label">{props.t('book4')}</div>
-                        <div className="input">
-                            <img alt={'icon'} src={require('../../public/Group 3.png')}/>
-                            <input placeholder={props.t('book5')} value={toInput}
-                                   onKeyDown={(event) => handleDeleteAddress('from', event)}
-                                   onChange={(event) => {
-                                       handleInputChange('to', event)
-                                   }}/>
-                        </div>
-                        <AddressList>
-                            {toAddress ? toAddress.map((address, index) => {
-                                return <div onClick={() => {
-                                    sendContext(address, 'to', toInput)
-                                    setTo(address);
-                                    setToAddress(null);
-                                }} key={index}>
-                                    {address.value}
-                                </div>
-                            }) : null}
-                        </AddressList>
-                        {to ? <div className="showAaddress">{to.value}</div> : ''}
-                        {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
-                    </InputsContainer>
+                    <InputsContainer3>
+                        <InputsContainer width={'60%'}>
+                            <div className="input-label">{props.t('book4')}</div>
+                            <div className="input">
+                                <img alt={'icon'} src={require('../../public/Group 3.png')}/>
+                                <input placeholder={props.t('book5')} value={toInput}
+                                       onKeyDown={(event) => handleDeleteAddress('from', event)}
+                                       onChange={(event) => {
+                                           handleInputChange('to', event)
+                                       }}/>
+                            </div>
+                            <AddressList>
+                                {toAddress ? toAddress.map((address, index) => {
+                                    return <div onClick={() => {
+                                        sendContext(address, 'to', toInput)
+                                        setTo(address);
+                                        setToAddress(null);
+                                    }} key={index}>
+                                        {address.value}
+                                    </div>
+                                }) : null}
+                            </AddressList>
+                            {to ? <div className="showAaddress">{to.value}</div> : ''}
+                            {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
+                        </InputsContainer>
+                        <InputsContainer width={'38%'}>
+                            <div className="input-label" style={{visibility:"hidden"}}>m</div>
+                            <div className="input">
+                                <input placeholder={'.No'} value={toHouseNumber}
+                                       onChange={(event) => {
+                                           setToHouseNumber(event.target.value)
+                                       }}/>
+                            </div>
+                        </InputsContainer>
+                    </InputsContainer3>
                     {/*pickup... and return*/}
                     <InputsContainer2>
 
