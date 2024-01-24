@@ -184,7 +184,7 @@ export const SecondContainer = styled.div`
 //booking
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
-  width:${(props) => (props.width? props.width : '100%')};;
+  width:${(props) => (props.width? props.width : '100%')};
 
   position: ${(props) => (props.position? 'unset' : 'relative')};
 
@@ -207,7 +207,7 @@ export const InputsContainer = styled.div`
 
   & > div.input {
     border: 1px solid rgba(255, 255, 255, 0.3);
-    padding:${(props) => (props.position? 'none' : '0 .7rem')};
+    padding:${(props) => (props.position? '0' : '0 .4rem')};
     display: flex;
     align-items: center;
     border-radius: 8px;
