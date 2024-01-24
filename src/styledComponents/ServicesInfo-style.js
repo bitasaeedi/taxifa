@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const ServicesContainer = styled.div`
   background-image: ${(props) => props.image};
   width: 100%;
-  height:fit-content;
+  height: fit-content;
   background-size: 100% 950px;
   position: relative;
-padding-bottom: 2rem;
+  padding-bottom: 2rem;
+
   & > h2 {
     width: 100%;
     position: relative;
@@ -49,8 +50,8 @@ export const AllServicesContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     top: 5rem;
     gap: 10px;
-     }
-  @media (min-width: 1200px){
+  }
+  @media (min-width: 1200px) {
     top: 6rem;
   }
 `
@@ -85,13 +86,14 @@ export const Service = styled.div`
     font-size: 1.05rem;
     text-decoration: none;
   }
+
   @media (min-width: 620px) {
     padding: 2rem 1.2rem 1.2rem;
     width: 22.5%;
     & > p {
       margin: 2.3rem 0;
     }
-     }
+  }
   @media (min-width: 1200px) {
     padding: 2.5rem 1.5rem 1.5rem;
     width: 21.5%;
@@ -100,4 +102,7 @@ export const Service = styled.div`
     }
   }
 
+`
+export const MyTable = styled.div`
+    margin: 3rem 5rem;
 `

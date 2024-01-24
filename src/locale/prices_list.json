@@ -1,0 +1,418 @@
+[
+    {
+      "number": 1,
+      "from": "ACHTERVELD",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    },
+    {
+      "number": 2,
+      "from": "AMERONGEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 3,
+      "from": "AMERSFOORT",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 4,
+      "from": "AUSTERLITZ",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    },
+    {
+      "number": 5,
+      "from": "BAARN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 6,
+      "from": "BARNEVELD",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 130",
+      "max_4_passenger_and_3_large_suitcases": "€ 150",
+      "max_8_passenger_and_6_large_suitcases": "€ 160"
+    },
+    {
+      "number": 7,
+      "from": "BILTHOVEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 8,
+      "from": "BLARICUM",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 9,
+      "from": "Bunschoten-Spakenburg",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 10,
+      "from": "BUSSUM",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 11,
+      "from": "COTHEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 155",
+      "max_4_passenger_and_3_large_suitcases": "€ 175",
+      "max_8_passenger_and_6_large_suitcases": "€ 185"
+    },
+    {
+      "number": 12,
+      "from": "DE BILT",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 13,
+      "from": "DEN DOLDER",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 14,
+      "from": "DOORN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 110",
+      "max_4_passenger_and_3_large_suitcases": "€ 130",
+      "max_8_passenger_and_6_large_suitcases": "€ 140"
+    },
+    {
+      "number": 15,
+      "from": "Driebergen-Rijsenburg",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 16,
+      "from": "EEMNES",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 17,
+      "from": "ELSPEET",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 18,
+      "from": "ERMELO",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 19,
+      "from": "GARDEREN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 20,
+      "from": "HARDERWIJK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 165",
+      "max_4_passenger_and_3_large_suitcases": "€ 185",
+      "max_8_passenger_and_6_large_suitcases": "€ 195"
+    },
+    {
+      "number": 21,
+      "from": "HOEVELAKEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 22,
+      "from": "HOOGLAND",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 23,
+      "from": "HOOGLANDERVEEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 95",
+      "max_4_passenger_and_3_large_suitcases": "€ 115",
+      "max_8_passenger_and_6_large_suitcases": "€ 125"
+    },
+    {
+      "number": 24,
+      "from": "HUIS TER HEIDE",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 25,
+      "from": "HUIZEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 26,
+      "from": "KOOTWUK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 27,
+      "from": "KDOTWLKERBROEK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 28,
+      "from": "LANGBROEK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 29,
+      "from": "LEERSUM",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 125",
+      "max_4_passenger_and_3_large_suitcases": "€ 145",
+      "max_8_passenger_and_6_large_suitcases": "€ 155"
+    },
+    {
+      "number": 30,
+      "from": "LEUSDEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 100",
+      "max_4_passenger_and_3_large_suitcases": "€ 120",
+      "max_8_passenger_and_6_large_suitcases": "€ 130"
+    },
+    {
+      "number": 31,
+      "from": "LUNTEREN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 135",
+      "max_4_passenger_and_3_large_suitcases": "€ 155",
+      "max_8_passenger_and_6_large_suitcases": "€ 165"
+    },
+    {
+      "number": 32,
+      "from": "MAARN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 33,
+      "from": "MAARSDERGEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 105",
+      "max_4_passenger_and_3_large_suitcases": "€ 125",
+      "max_8_passenger_and_6_large_suitcases": "€ 135"
+    },
+    {
+      "number": 34,
+      "from": "MAARSSEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 125",
+      "max_4_passenger_and_3_large_suitcases": "€ 145",
+      "max_8_passenger_and_6_large_suitcases": "€ 155"
+    },
+    {
+      "number": 35,
+      "from": "MAARTENSDUK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 110",
+      "max_4_passenger_and_3_large_suitcases": "€ 130",
+      "max_8_passenger_and_6_large_suitcases": "€ 140"
+    },
+    {
+      "number": 36,
+      "from": "NUKERK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    },
+    {
+      "number": 37,
+      "from": "NUKERKERVEEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 100",
+      "max_4_passenger_and_3_large_suitcases": "€ 120",
+      "max_8_passenger_and_6_large_suitcases": "€ 130"
+    },
+    {
+      "number": 38,
+      "from": "NUNSPEET",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 39,
+      "from": "PUTTEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 40,
+      "from": "RENSWOUDE",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 41,
+      "from": "SCHERPENZEEL",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 125",
+      "max_4_passenger_and_3_large_suitcases": "€ 145",
+      "max_8_passenger_and_6_large_suitcases": "€ 155"
+    },
+    {
+      "number": 42,
+      "from": "SOFST",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 100",
+      "max_4_passenger_and_3_large_suitcases": "€ 120",
+      "max_8_passenger_and_6_large_suitcases": "€ 130"
+    },
+    {
+      "number": 43,
+      "from": "SOESTERBERG",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 100",
+      "max_4_passenger_and_3_large_suitcases": "€ 120",
+      "max_8_passenger_and_6_large_suitcases": "€ 130"
+    },
+    {
+      "number": 44,
+      "from": "STOUTENBURG",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 100",
+      "max_4_passenger_and_3_large_suitcases": "€ 120",
+      "max_8_passenger_and_6_large_suitcases": "€ 130"
+    },
+    {
+      "number": 45,
+      "from": "STROE",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 46,
+      "from": "TERSCHLUR",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    },
+    {
+      "number": 47,
+      "from": "VOORTHUIZEN",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 130",
+      "max_4_passenger_and_3_large_suitcases": "€ 150",
+      "max_8_passenger_and_6_large_suitcases": "€ 160"
+    },
+    {
+      "number": 48,
+      "from": "WIJK BIJ DUURSTEDE",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 145",
+      "max_4_passenger_and_3_large_suitcases": "€ 165",
+      "max_8_passenger_and_6_large_suitcases": "€ 175"
+    },
+    {
+      "number": 49,
+      "from": "WOUDENBERG",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    },
+    {
+      "number": 50,
+      "from": "ZEEWOLDE",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 135",
+      "max_4_passenger_and_3_large_suitcases": "€ 155",
+      "max_8_passenger_and_6_large_suitcases": "€ 165"
+    },
+    {
+      "number": 51,
+      "from": "ZEIST",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 110",
+      "max_4_passenger_and_3_large_suitcases": "€ 130",
+      "max_8_passenger_and_6_large_suitcases": "€ 140"
+    },
+    {
+      "number": 52,
+      "from": "ZWARTEBROEK",
+      "to": "SCHIPHOL",
+      "max_4_passenger_and_2_large_suitcases": "€ 115",
+      "max_4_passenger_and_3_large_suitcases": "€ 135",
+      "max_8_passenger_and_6_large_suitcases": "€ 145"
+    }
+  ]
