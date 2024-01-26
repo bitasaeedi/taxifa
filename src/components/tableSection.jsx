@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import {MyTable} from "../styledComponents/ServicesInfo-style";
+import PersonInfo from "./personInfo";
+import Header from "./Header";
 function TableSection(props) {
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -43,6 +45,8 @@ function TableSection(props) {
     console.log(prices)
     return (
        <>
+           <PersonInfo/>
+           <Header handle={props.handleLanguage} color={'white'}/>
            <MyTable>
                <TableContainer component={Paper}>
                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -71,6 +75,7 @@ function TableSection(props) {
                        </TableBody>
                    </Table>
                </TableContainer>
+               <p>{props.t('tablePage')}</p>
            </MyTable>
        </>
     );

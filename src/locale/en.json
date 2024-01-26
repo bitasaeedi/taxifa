@@ -87,6 +87,7 @@
     "form2": "Last Name",
     "form3": "Number",
     "back": "Back",
-    "next": "Next"
+    "next": "Next",
+    "tablePage": "For booking a ride from Schiphol to this addresses, please call us. "
   }
 }

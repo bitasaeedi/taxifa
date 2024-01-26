@@ -346,3 +346,51 @@ export const HomeContentRightSideContainer = styled.div`
   transform: ${(props) => (`translateX(${props.translate}px)`)};
   transition: transform .5s ease-in-out;
 `
+export const Header2 = styled.div`
+  background: ${(props) => (props.color==='white'?'white':'black')};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+ padding: 1rem 1rem;
+  &>div{
+    color: ${(props) => (props.color==='white'?'black':'white')};
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+  }
+  &>div>img{
+    width: 45px;
+  }
+&>div>img.flag{
+  width: 38px;
+ 
+}
+  &>div>a{
+    text-decoration: none;
+    font-size: 1rem;
+    margin-left: 1rem;
+    padding: .4rem .8rem;
+    background: black;
+    color: white;
+    border-radius: 8px;
+  }
+  @media (min-width: 620px){
+    padding: 1rem 3rem;
+    &>div>img{
+      width: 60px;
+    }
+    &>div{
+      font-size: 1rem;
+    }
+    &>div>img.flag{
+      width: 42px;
+      margin-left: 5rem;
+    }
+    &>div>a {
+      font-size: 1.1rem;
+      margin-left: 2rem;
+      padding: .5rem .8rem;
+    }
+  }
+`

@@ -104,11 +104,13 @@ export const Service = styled.div`
 
 `
 export const MyTable = styled.div`
-    margin: 3rem 2rem;
-  max-height: 350px;
-  overflow-y: scroll;
-  @media (min-width: 1200px) {
-    margin: 3rem 5rem;
-    max-height: 490px;
+    margin: 3rem auto;
+  width: 85%;
+  &>p{
+    font-size: 1.1rem;
+    width: 70%;
+    margin: 2rem auto;
+    text-align: center;
+    
   }
 `
