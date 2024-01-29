@@ -13,7 +13,7 @@ function Header({handle,color}) {
                     setFlag(!flag);
                     handle()
                 }}/>
-                    <a href={''}>home</a>
+                    <a href={'https://www.taxicentraalsoest.nl/'}>home</a>
                 </div>
 
 
