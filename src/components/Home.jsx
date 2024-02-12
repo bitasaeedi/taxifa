@@ -49,8 +49,8 @@ function handleMenu(){
                 <MenuLeft mobile={!isdesc} >
                     <img alt={'Taxifa'} className={'menu'} onClick={()=>{
                         handleMenu();}} src={require('../public/menu.png')}/>
-                    <img alt={'Taxifa'} src={require('../public/taxicentral2.png')}/>
-                    <span className={'Irish_font'}>Taxicentraal</span>
+
+                    <span className={'Irish_font'}>Taxicentraal Seost</span>
                     <img alt={'uk'} className={'flag'} src={flag?require('../public/flag.png'):require('../public/netherlands.png')} onClick={()=>{setFlag(!flag);handleLanguage()}}/>
                 </MenuLeft>
 

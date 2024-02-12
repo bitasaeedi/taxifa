@@ -87,6 +87,11 @@
     "form3": "Nummer",
     "back": "Rug",
     "next": "Volgende",
-    "tablePage": "Voor het reserveren van een rit van Schiphol naar dit adres, belt u ons alstublieft."
+    "tablePage": "Voor het reserveren van een rit van Schiphol naar dit adres, belt u ons alstublieft.",
+    "info1": "Reisinformatie",
+    "info2": "Reizigers",
+    "info3": "Speciale bagage",
+    "info4": "Betalingsmiddel",
+    "info5": "Persoon"
   }
 }

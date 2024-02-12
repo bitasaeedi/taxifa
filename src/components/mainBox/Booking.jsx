@@ -260,6 +260,7 @@ function Booking(props) {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <MobileDateTimePicker
                                         value={date}
+                                        ampm={false}
                                         onChange={(newValue)=>{setdate(newValue)}} />
                                 </LocalizationProvider>
                             </div>
@@ -279,6 +280,7 @@ function Booking(props) {
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                                     <MobileDateTimePicker
                                         value={date2}
+                                        ampm={false}
                                         onChange={(newValue)=>{setdate2(newValue)}}
                                         />
                                 </LocalizationProvider>

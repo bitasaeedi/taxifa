@@ -63,7 +63,7 @@ function TravelInformation(props) {
         <>
 
             <MainBoxContainer>
-                <h2>Travel Information</h2>
+                <h2>{props.t('info1')}</h2>
                 <div className={'price'}>${response.amount ? response.amount : ""}</div>
                 <TravelInfo>
 
@@ -89,9 +89,9 @@ function TravelInformation(props) {
                     </div>
                     <hr/>
                     <div className="extra-info">
-                        <h6>Travellers</h6>
-                        <div>{response.number_of_passengers ? response.number_of_passengers : ''} Person</div>
-                        <h6>Special Luggage</h6>
+                        <h6>{props.t('info2')}</h6>
+                        <div>{response.number_of_passengers ? response.number_of_passengers : ''} {props.t('info5')}</div>
+                        <h6>{props.t('info3')}</h6>
                         {response.luggage ? response.luggage.map((l, index) => {
                             if (l.number !== 0) {
                                 return <>
@@ -109,17 +109,17 @@ function TravelInformation(props) {
                         props.transform(3)
                     }}>
                         <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
-                        <div>Back</div>
+                        <div>{props.t('back')}</div>
                     </div>
 
                     <button onClick={() => {
                         setPaymentIsOpen(true)
-                    }}>Next
+                    }}>{props.t('next')}
                     </button>
                 </BottomPart>
 
                 <PaymentMethod display={paymentIsOpen}>
-                    <h4>Payment Method :</h4>
+                    <h4>{props.t('info4')} :</h4>
                     <PaymentButton color={'yellow'} onClick={() => handlePayment('online')}>
                         {loader?<Oval
                             height={20}

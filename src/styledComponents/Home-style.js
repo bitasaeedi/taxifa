@@ -24,6 +24,7 @@ export const PersonInfoContainer = styled.div`
   }
 
   @media (min-width: 620px) {
+    font-size: .92rem;
     padding: .8rem 3.5rem;
   }
 

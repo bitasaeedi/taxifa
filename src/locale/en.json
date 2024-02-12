@@ -88,6 +88,12 @@
     "form3": "Number",
     "back": "Back",
     "next": "Next",
-    "tablePage": "For booking a ride from Schiphol to this addresses, please call us. "
+    "tablePage": "For booking a ride from Schiphol to this addresses, please call us. ",
+    "info1": "Travel Information",
+    "info2": "Travellers",
+    "info3": "Special Luggage",
+    "info4": "Payment Method",
+    "info5": "Person"
+
   }
 }
