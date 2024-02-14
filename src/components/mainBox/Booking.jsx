@@ -3,7 +3,8 @@ import {
     AddressList,
     Button,
     InputsContainer,
-    InputsContainer2, InputsContainer3,
+    InputsContainer2,
+    InputsContainer3,
     Luggage,
     MainBoxContainer,
     SecondContainer
@@ -13,15 +14,14 @@ import {throttle} from 'lodash';
 import axios from "../axios";
 import {Toast} from "../toast";
 import {ToastContainer} from "react-toastify";
-import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import {useAppContext} from "../context";
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import dayjs from 'dayjs';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
+import {MobileDateTimePicker} from '@mui/x-date-pickers/MobileDateTimePicker';
+
 function Booking(props) {
-    const {setTripInfo, setLoggageFlag} = useAppContext();
+    const {setTripInfo, setLoggageFlag, setFinalAddress, finalAddress} = useAppContext();
     const [date, setdate] = useState(null);
     const [date2, setdate2] = useState(null);
     const [numberOfPassengar, setNumberOfPassengar] = useState();
@@ -29,8 +29,8 @@ function Booking(props) {
     const [toContext, setToContext] = useState();
     const [inputType, setInputType] = useState(true)
     const [selectedOption, setSelectedOption] = useState(null);
-    const [fromInput, setFromInput] = useState('');
-    const [toInput, setToInput] = useState('');
+    const [fromInput, setFromInput] = useState({value: '', context: ''});
+    const [toInput, setToInput] = useState({value: '', context: ''});
     const [fromAddress, setFromAddress] = useState();
     const [toAddress, setToAddress] = useState();
     const [Return, setReturn] = useState(false);
@@ -53,17 +53,17 @@ function Booking(props) {
                     postal_code: fromContext.address.postcode,
                     lat: fromContext.location.latitude,
                     lan: fromContext.location.longitude,
-                    house_number:fromHouseNumber,
-                    address: fromContext.address.country+' '+fromContext.address.locality+' '+fromContext.address.street
+                    house_number: fromHouseNumber,
+                    address: fromContext.address.country + ' ' + fromContext.address.locality + ' ' + fromContext.address.street
                 },
                 destination: {
                     postal_code: toContext.address.postcode,
                     lat: toContext.location.latitude,
                     lan: toContext.location.longitude,
-                    house_number:toHouseNumber,
-                    address: toContext.address.country+' '+toContext.address.locality+' '+toContext.address.street
+                    house_number: toHouseNumber,
+                    address: toContext.address.country + ' ' + toContext.address.locality + ' ' + toContext.address.street
 
-        },
+                },
                 pickup_time: date.$d,
                 return: Return ? "true" : "false",
                 return_time: Return ? date2.$d : "",
@@ -83,10 +83,10 @@ function Booking(props) {
     function handleInputChange(type, event) {//save input value
 
         if (type === 'from') {
-            setFromInput(event.target.value);
+            setFromInput({...fromInput,value: event.target.value});
             setInputType(true)
         } else {
-            setToInput(event.target.value)
+            setToInput({...toInput,value: event.target.value})
             setInputType(false)
         }
 
@@ -103,8 +103,9 @@ function Booking(props) {
 
     //get list of address that are recommend
     function sendRequest(value, type) {
-
-        axios.get(`/trip/autocomplete/post-code/${value}`
+        const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}`
+        console.log('url: ',URL)
+        axios.get(URL
         ).then(function (response) {
                 if (type === 'from') {
                     setFromAddress(response.data.body)
@@ -115,7 +116,7 @@ function Booking(props) {
             }
         ).catch(function (error) {
             console.error('Error:', error);
-            if (error.response) {
+            if (error.response && value.value !== "") {
                 Toast('This address does not exist', false)
             }
         });
@@ -124,15 +125,19 @@ function Booking(props) {
 
     // after that user click on an address
     function sendContext(value, type, inputValue) {
-        console.log('info:  ',value)
-        if (value.precision==='Address') {
+        console.log('info:  ', value)
+        if (value.precision === 'Address') {
             console.log('now')
             axios.get(`/trip/address/details/${value.context}`
             ).then(function (response) {
-                    console.log(response)
+                    console.log("final: ", response)
+                    let res = response.data.body.address;
                     if (type === 'from') {
                         setFromContext(response.data.body)
+                        setFinalAddress({
+                            ...finalAddress, destination: res.locality +" "+ res.street + " "+res.postcode +" "+ res.building});
                     } else {
+                        setFinalAddress({...finalAddress, origin: res.locality + " "+res.street + " "+res.postcode + " "+res.building});
                         setToContext(response.data.body)
                     }
                 }
@@ -142,11 +147,12 @@ function Booking(props) {
                     Toast('This address does not exist', false)
                 }
             });
-        }
-        else {
-            console.log(toInput,': ',value.value)
-            type==='from'?setFromInput(value.value):setToInput(value.value);
-
+        } else {
+            console.log(toInput, ': ', value.value)
+            type === 'from' ? setFromInput({
+                value: value.value,
+                context: value.context
+            }) : setToInput({value: value.value, context: value.context});
 
             console.log('type2')
         }
@@ -184,7 +190,7 @@ function Booking(props) {
                             <div className="input-label">{props.t('book2')}</div>
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/form.png')}/>
-                                <input placeholder={props.t('book3')} value={fromInput}
+                                <input placeholder={props.t('book3')} value={fromInput.value}
                                        onKeyDown={(event) => handleDeleteAddress('from', event)}
                                        onChange={(event) => {
                                            handleInputChange('from', event)
@@ -205,7 +211,7 @@ function Booking(props) {
                             {/*{from? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
                         </InputsContainer>
                         <InputsContainer width={'38%'}>
-                            <div className="input-label" style={{visibility:"hidden"}}>m </div>
+                            <div className="input-label" style={{visibility: "hidden"}}>m</div>
                             <div className="input">
                                 <input placeholder={'.No'} value={fromHouseNumber}
                                        onChange={(event) => {
@@ -221,7 +227,7 @@ function Booking(props) {
                             <div className="input-label">{props.t('book4')}</div>
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/Group 3.png')}/>
-                                <input placeholder={props.t('book5')} value={toInput}
+                                <input placeholder={props.t('book5')} value={toInput.value}
                                        onKeyDown={(event) => handleDeleteAddress('from', event)}
                                        onChange={(event) => {
                                            handleInputChange('to', event)
@@ -242,7 +248,7 @@ function Booking(props) {
                             {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
                         </InputsContainer>
                         <InputsContainer width={'38%'}>
-                            <div className="input-label" style={{visibility:"hidden"}}>m</div>
+                            <div className="input-label" style={{visibility: "hidden"}}>m</div>
                             <div className="input">
                                 <input placeholder={'.No'} value={toHouseNumber}
                                        onChange={(event) => {
@@ -261,7 +267,9 @@ function Booking(props) {
                                     <MobileDateTimePicker
                                         value={date}
                                         ampm={false}
-                                        onChange={(newValue)=>{setdate(newValue)}} />
+                                        onChange={(newValue) => {
+                                            setdate(newValue)
+                                        }}/>
                                 </LocalizationProvider>
                             </div>
                         </InputsContainer>
@@ -281,8 +289,10 @@ function Booking(props) {
                                     <MobileDateTimePicker
                                         value={date2}
                                         ampm={false}
-                                        onChange={(newValue)=>{setdate2(newValue)}}
-                                        />
+                                        onChange={(newValue) => {
+                                            setdate2(newValue)
+                                        }}
+                                    />
                                 </LocalizationProvider>
                             </div>
                         </InputsContainer>
@@ -325,7 +335,7 @@ function Booking(props) {
 
                 <Button onClick={() => {
 
-                    if(fromInput&&toInput&&numberOfPassengar){
+                    if (fromInput && toInput && numberOfPassengar) {
                         handleSaveInfos();
                         if (selectedOption === 'yes') {
                             setLoggageFlag(true)
@@ -335,9 +345,8 @@ function Booking(props) {
                             props.transform(3)
                         }
 
-                    }
-                    else{
-                        Toast('please fill out the forms',false);
+                    } else {
+                        Toast('please fill out the forms', false);
                     }
 
                 }}>{props.t('book12')}</Button>

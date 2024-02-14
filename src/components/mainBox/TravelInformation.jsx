@@ -14,7 +14,7 @@ import Swal from 'sweetalert2'
 
 function TravelInformation(props) {
     const [paymentIsOpen, setPaymentIsOpen] = useState(false);
-    const {response} = useAppContext();
+    const {response,finalAddress} = useAppContext();
     const [loader,setLoader]=useState(false)
     const [loader2,setLoader2]=useState(false)
     const formattedDate = new Date(response.pickup_time).toLocaleString('en-GB', {
@@ -59,6 +59,8 @@ function TravelInformation(props) {
 
     }
 
+    console.log('res: ',response)
+
     return (
         <>
 
@@ -78,11 +80,11 @@ function TravelInformation(props) {
                         <div>
 
                             <div>
-                                {response.origin ? response.origin.address : ''} - 17:25
+                                {finalAddress.destination ? finalAddress.destination : ''} - 17:25
                             </div>
 
                             <div>
-                                {response.destination ? response.destination.address : ''} - 19:40
+                                {finalAddress.origin ?finalAddress.origin : ''} - 19:40
                             </div>
 
                         </div>

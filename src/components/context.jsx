@@ -86,9 +86,10 @@ function AppProvider ({ children }) {
         ]
     });
     let[response,setResponse]=useState({});
+    let [finalAddress,setFinalAddress]=useState({destination:"",origin:""});
     let [loggageFlag,setLoggageFlag]=useState(false);
     return (
-        <AppContext.Provider value={{ tripInfo,setTripInfo,response,setResponse,loggageFlag,setLoggageFlag}}>
+        <AppContext.Provider value={{ tripInfo,setTripInfo,response,setResponse,loggageFlag,setLoggageFlag,finalAddress,setFinalAddress}}>
             {children}
         </AppContext.Provider>
     );

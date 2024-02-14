@@ -92,7 +92,7 @@ function Description({t}) {
                             <img alt='car' src={require('../public/des3.png')} onClick={() => openLightbox(2)}/>
                             <img alt='car' src={require('../public/des4.png')} onClick={() => openLightbox(3)}/>
                         </div>
-                        <div onClick={() => openLightbox(0)}>{t('descriptinItems6')}</div>
+
                     </DescriptionRightSide>
 
                     <FsLightbox
