@@ -108,7 +108,7 @@ function Booking(props) {
         ).then(function (response) {
                 if (type === 'from') {
                     setFromAddress(response.data.body)
-                    console.log(response)
+
                 } else {
                     setToAddress(response.data.body)
                 }
@@ -124,9 +124,9 @@ function Booking(props) {
 
     // after that user click on an address
     function sendContext(value, type, inputValue) {
-
-        if (inputValue.length > 5) {
-            console.log('type1')
+        console.log('info:  ',value)
+        if (value.precision==='Address') {
+            console.log('now')
             axios.get(`/trip/address/details/${value.context}`
             ).then(function (response) {
                     console.log(response)
