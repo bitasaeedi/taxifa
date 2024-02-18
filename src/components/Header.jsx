@@ -6,8 +6,8 @@ function Header({handle,color}) {
     return (
         <>
             <Header2 color={color}>
-                <div> <img alt={'Taxifa'} src={require('../public/taxicentral2.png')}/>
-                    <span className={'Irish_font'}>Taxicentraal</span></div>
+                <div>
+                    <span className={'Irish_font'}>Taxicentraal seost</span></div>
                 <div>  <img alt={'uk'} className={'flag'}
                             src={flag ? require('../public/flag.png') : require('../public/netherlands.png')} onClick={() => {
                     setFlag(!flag);

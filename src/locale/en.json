@@ -93,7 +93,8 @@
     "info2": "Travellers",
     "info3": "Special Luggage",
     "info4": "Payment Method",
-    "info5": "Person"
+    "info5": "Person",
+    "cash": "later(Cash...)"
 
   }
 }

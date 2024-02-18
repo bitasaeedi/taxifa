@@ -82,7 +82,17 @@ function Booking(props) {
     //save inputs of destination and origin
     function handleInputChange(type, event) {//save input value
 
-        if (type === 'from') {
+        if (event.target.value===''&&type === 'from') {
+            console.log("e: ",fromInput)
+            setFromInput({value: '', context: ''})
+            setFrom(null)
+            setFromAddress(null)
+        } else if(event.target.value===''&&type === 'to') {
+            setToInput({value: '', context: ''})
+            setTo(null)
+            setToAddress(null)
+        }
+        else if (type === 'from') {
             setFromInput({...fromInput,value: event.target.value});
             setInputType(true)
         } else {
@@ -96,15 +106,17 @@ function Booking(props) {
     function handleDeleteAddress(type, event) {
         if (type === 'from' && event.key === 'Backspace') {
             setFrom(null)
+            setFromAddress(null)
         } else if (type === 'to' && event.key === 'Backspace') {
             setTo(null)
+            setToAddress(null)
+
         }
     }
 
     //get list of address that are recommend
     function sendRequest(value, type) {
         const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}`
-        console.log('url: ',URL)
         axios.get(URL
         ).then(function (response) {
                 if (type === 'from') {
@@ -125,14 +137,13 @@ function Booking(props) {
 
     // after that user click on an address
     function sendContext(value, type, inputValue) {
-        console.log('info:  ', value)
+
         if (value.precision === 'Address') {
-            console.log('now')
             axios.get(`/trip/address/details/${value.context}`
             ).then(function (response) {
-                    console.log("final: ", response)
                     let res = response.data.body.address;
                     if (type === 'from') {
+                        console.log('now')
                         setFromContext(response.data.body)
                         setFinalAddress({
                             ...finalAddress, destination: res.locality +" "+ res.street + " "+res.postcode +" "+ res.building});
@@ -154,7 +165,6 @@ function Booking(props) {
                 context: value.context
             }) : setToInput({value: value.value, context: value.context});
 
-            console.log('type2')
         }
 
     }

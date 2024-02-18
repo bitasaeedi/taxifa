@@ -146,7 +146,7 @@ function TravelInformation(props) {
                             strokeWidth={6}
                             strokeWidthSecondary={6}
 
-                        />:'later(Cash...)'}</PaymentButton>
+                        />:props.t('cash')}</PaymentButton>
                     <div>
                         <img alt={'<-'} src={require('../../public/Arrow - Left.png')}/>
                         <div onClick={() => {
