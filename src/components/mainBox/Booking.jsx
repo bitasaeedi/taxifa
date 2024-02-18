@@ -83,7 +83,6 @@ function Booking(props) {
     function handleInputChange(type, event) {//save input value
 
         if (event.target.value===''&&type === 'from') {
-            console.log("e: ",fromInput)
             setFromInput({value: '', context: ''})
             setFrom(null)
             setFromAddress(null)
@@ -116,7 +115,8 @@ function Booking(props) {
 
     //get list of address that are recommend
     function sendRequest(value, type) {
-        const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}`
+        const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}/${value.value}`
+        console.log(URL)
         axios.get(URL
         ).then(function (response) {
                 if (type === 'from') {
@@ -137,11 +137,13 @@ function Booking(props) {
 
     // after that user click on an address
     function sendContext(value, type, inputValue) {
-
+        console.log("value click: ", value)
         if (value.precision === 'Address') {
+            console.log("this is Address API")
             axios.get(`/trip/address/details/${value.context}`
             ).then(function (response) {
                     let res = response.data.body.address;
+
                     if (type === 'from') {
                         console.log('now')
                         setFromContext(response.data.body)
