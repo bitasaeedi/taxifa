@@ -185,12 +185,10 @@ export const SecondContainer = styled.div`
 export const InputsContainer = styled.div`
   margin-bottom: .8rem;
   width:${(props) => (props.width? props.width : '100%')};
-
   position: ${(props) => (props.position? 'unset' : 'relative')};
 
   & div.react-datepicker-popper {
     transform: translate3d(34%, 40%, 0px) !important;
-
   }
 
   & > div.input-label {
@@ -229,7 +227,9 @@ export const InputsContainer = styled.div`
     font-size: .8rem;
     filter: ${(props) => (props.return === false ? 'blur(.8px)' : 'unset')};
   }
-
+&>div>div{
+  width: 100%;
+}
   & > div.input input.react-datepicker-time__input {
     color: black;
   }
@@ -272,6 +272,7 @@ export const InputsContainer = styled.div`
 `
 export const InputsContainer2 = styled.div`
   display: flex;
+align-items: center;
 
   & > div:first-child {
     margin-right: 1.5rem;
@@ -328,6 +329,27 @@ export const Button = styled.div`
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
+`
+export const Clock = styled.div`
+    width: 50%;
+  display: flex;
+  align-items: center;
+  &>input{
+    width: 50px;
+    background-color: unset;
+    margin:0 .35rem;
+    min-height:35px;
+    outline: none;
+    color: white;
+    text-align: center;
+    font-size: .8rem;
+    filter: ${(props) => (props.return === false ? 'blur(.8px)' : 'unset')};
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+  }
+  &>span{
+    color: white;
+  }
 `
 
 //luggage

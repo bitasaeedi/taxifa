@@ -12,9 +12,9 @@ function AppProvider ({ children }) {
         },
         destination: {//
         },
-        pickup_time:"",//
-        return: "",//
-        return_time: "",//
+        pickup:{},//
+        return: {},//
+        flight_number:'',
         number_of_passengers: 1,//
         luggage: [
             {

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
     AddressList,
-    Button,
+    Button, Clock,
     InputsContainer,
     InputsContainer2,
     InputsContainer3,
@@ -18,8 +18,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import {useAppContext} from "../context";
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
-import {MobileDateTimePicker} from '@mui/x-date-pickers/MobileDateTimePicker';
-
+import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
+import { StandaloneSearchBox, useJsApiLoader } from "@react-google-maps/api";
+const libraries = ['places'];
+const libraries2 = ['places'];
 function Booking(props) {
     const {setTripInfo, setLoggageFlag, setFinalAddress, finalAddress} = useAppContext();
     const [date, setdate] = useState(null);
@@ -40,8 +42,38 @@ function Booking(props) {
     const [toHouseNumber, setToHouseNumber] = useState("");
     const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
     const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
+    const [hour, setHour] = useState('');
+    const [minute, setMinute] = useState('');
+    const [hour2, setHour2] = useState('');
+    const [minute2, setMinute2] = useState('');
+    const [flightNumber,setFlightNumber]=useState()
+    const [placeIdFrom,setPlaceIdFrom]=useState()
+    const [placeIdTo,setPlaceIdTo]=useState()
+    const [airport,setAirport]=useState(false)
+// saving time
+    const handleHourChange = (event,type) => {
+        // Ensure hour is between 0 and 23
+        let newHour = Math.min(Math.max(0, parseInt(event.target.value) || 0), 23);
+        newHour = newHour < 10 ? '0' + newHour : '' + newHour; // Add leading zero if single digit
+        if(type==='from'){
+            setHour(newHour);
+        }else {
+            setHour2(newHour);
+        }
 
+    };
 
+    const handleMinuteChange = (event,type) => {
+        // Ensure minute is between 0 and 59
+        let newMinute = Math.min(Math.max(0, parseInt(event.target.value) || 0), 59);
+        newMinute = newMinute < 10 ? '0' + newMinute : '' + newMinute; // Add leading zero if single digit
+        if(type==='from'){
+            setMinute(newMinute);
+        }else {
+            setMinute2(newMinute);
+
+        }
+    };
     //save travel info in context
     function handleSaveInfos() {
 
@@ -49,24 +81,25 @@ function Booking(props) {
             setTripInfo((info) => ({
                 ...info,
                 origin: {
-                    // postal_code: fromContext.postcode+fromAddress.houseNumber.toString(),
-                    postal_code: fromContext.address.postcode,
-                    lat: fromContext.location.latitude,
-                    lan: fromContext.location.longitude,
-                    house_number: fromHouseNumber,
-                    address: fromContext.address.country + ' ' + fromContext.address.locality + ' ' + fromContext.address.street
+                    postal_code: '',
+                    place_id:placeIdFrom,
+                    house_number: fromHouseNumber
                 },
                 destination: {
-                    postal_code: toContext.address.postcode,
-                    lat: toContext.location.latitude,
-                    lan: toContext.location.longitude,
-                    house_number: toHouseNumber,
-                    address: toContext.address.country + ' ' + toContext.address.locality + ' ' + toContext.address.street
-
+                    postal_code: '',
+                    place_id:placeIdTo,
+                    house_number: toHouseNumber
                 },
-                pickup_time: date.$d,
-                return: Return ? "true" : "false",
-                return_time: Return ? date2.$d : "",
+                pickup: {
+                    time:hour+':'+minute,
+                    date:date
+                },
+                return: {
+                    active:Return,
+                    time:hour2+':'+minute2,
+                    date:date2
+                },
+                flight_number:flightNumber,
                 number_of_passengers: numberOfPassengar
             }));
         }
@@ -172,23 +205,53 @@ function Booking(props) {
     }
 
     // send request when user write in inputs after 1000ns
-    useEffect(() => {
+    // useEffect(() => {
+    //
+    //     const timer = setTimeout(() => {
+    //         if (fromInput && inputType) {
+    //             throttledSendRequest(fromInput);
+    //         }
+    //     }, 1000);
+    //     const timer2 = setTimeout(() => {
+    //         if (toInput && !inputType) {
+    //             throttledSendRequest2(toInput);
+    //         }
+    //     }, 1000);
+    //     return () => {
+    //         clearTimeout(timer);
+    //         clearTimeout(timer2);
+    //     }
+    // }, [fromInput, toInput]);
 
-        const timer = setTimeout(() => {
-            if (fromInput && inputType) {
-                throttledSendRequest(fromInput);
-            }
-        }, 1000);
-        const timer2 = setTimeout(() => {
-            if (toInput && !inputType) {
-                throttledSendRequest2(toInput);
-            }
-        }, 1000);
-        return () => {
-            clearTimeout(timer);
-            clearTimeout(timer2);
+    //google map
+    const inputRef = useRef();
+    const inputRef2 = useRef();
+    const { isLoaded, loadError } = useJsApiLoader({
+        googleMapsApiKey: 'AIzaSyAFizMTk39puEPb3hBCQonn5kaY0lAveuU',
+        libraries
+    });
+    // const { isLoaded2, loadError2 } = useJsApiLoader({
+    //     googleMapsApiKey: 'AIzaSyAFizMTk39puEPb3hBCQonn5kaY0lAveuU',
+    //     libraries
+    // });
+
+    const handlePlaceChanged = () => {
+        const [ place ] = inputRef.current.getPlaces();
+        if(place) {
+            console.log(place.types[0]);
+            setPlaceIdFrom(place.place_id);
+            setFrom({value:place.name})
+            place.types[0]==='airport'?setAirport(true):setAirport(false)
         }
-    }, [fromInput, toInput]);
+    }
+    const handlePlaceChanged2 = () => {
+        const [ place2 ] = inputRef2.current.getPlaces();
+        if(place2) {
+            console.log(place2)
+            setPlaceIdTo(place2.place_id)
+            setTo({value:place2.name})
+        }
+    }
     return (
         <>
             <ToastContainer/>
@@ -202,23 +265,35 @@ function Booking(props) {
                             <div className="input-label">{props.t('book2')}</div>
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/form.png')}/>
-                                <input placeholder={props.t('book3')} value={fromInput.value}
-                                       onKeyDown={(event) => handleDeleteAddress('from', event)}
-                                       onChange={(event) => {
-                                           handleInputChange('from', event)
-                                       }}/>
+                                { isLoaded
+                                    &&
+                                    <StandaloneSearchBox
+                                        onLoad={ref => inputRef.current = ref}
+                                        onPlacesChanged={handlePlaceChanged}
+                                    >
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder={props.t('book3')}
+                                        />
+                                    </StandaloneSearchBox>}
+                                {/*<input placeholder={props.t('book3')} value={fromInput.value}*/}
+                                {/*       onKeyDown={(event) => handleDeleteAddress('from', event)}*/}
+                                {/*       onChange={(event) => {*/}
+                                {/*           handleInputChange('from', event)*/}
+                                {/*       }}/>*/}
                             </div>
-                            <AddressList>
-                                {fromAddress ? fromAddress.map((address, index) => {
-                                    return <div onClick={() => {
-                                        sendContext(address, 'from', fromInput)
-                                        setFrom(address);
-                                        setFromAddress(null);
-                                    }} key={index}>
-                                        {address.value}
-                                    </div>
-                                }) : null}
-                            </AddressList>
+                            {/*<AddressList>*/}
+                            {/*    {fromAddress ? fromAddress.map((address, index) => {*/}
+                            {/*        return <div onClick={() => {*/}
+                            {/*            sendContext(address, 'from', fromInput)*/}
+                            {/*            setFrom(address);*/}
+                            {/*            setFromAddress(null);*/}
+                            {/*        }} key={index}>*/}
+                            {/*            {address.value}*/}
+                            {/*        </div>*/}
+                            {/*    }) : null}*/}
+                            {/*</AddressList>*/}
                             {from ? <div className="showAaddress">{from.value}</div> : ''}
                             {/*{from? <div className="showAaddress">{fromAddress.city}-{fromAddress.street}-{fromAddress.houseNumber}</div>:''}*/}
                         </InputsContainer>
@@ -239,23 +314,35 @@ function Booking(props) {
                             <div className="input-label">{props.t('book4')}</div>
                             <div className="input">
                                 <img alt={'icon'} src={require('../../public/Group 3.png')}/>
-                                <input placeholder={props.t('book5')} value={toInput.value}
-                                       onKeyDown={(event) => handleDeleteAddress('from', event)}
-                                       onChange={(event) => {
-                                           handleInputChange('to', event)
-                                       }}/>
+                                { isLoaded
+                                    &&
+                                    <StandaloneSearchBox
+                                        onLoad={ref => inputRef2.current = ref}
+                                        onPlacesChanged={handlePlaceChanged2}
+                                    >
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            placeholder={props.t('book5')}
+                                        />
+                                    </StandaloneSearchBox>}
+                                {/*<input placeholder={props.t('book5')} value={toInput.value}*/}
+                                {/*       onKeyDown={(event) => handleDeleteAddress('from', event)}*/}
+                                {/*       onChange={(event) => {*/}
+                                {/*           handleInputChange('to', event)*/}
+                                {/*       }}/>*/}
                             </div>
-                            <AddressList>
-                                {toAddress ? toAddress.map((address, index) => {
-                                    return <div onClick={() => {
-                                        sendContext(address, 'to', toInput)
-                                        setTo(address);
-                                        setToAddress(null);
-                                    }} key={index}>
-                                        {address.value}
-                                    </div>
-                                }) : null}
-                            </AddressList>
+                            {/*<AddressList>*/}
+                            {/*    {toAddress ? toAddress.map((address, index) => {*/}
+                            {/*        return <div onClick={() => {*/}
+                            {/*            sendContext(address, 'to', toInput)*/}
+                            {/*            setTo(address);*/}
+                            {/*            setToAddress(null);*/}
+                            {/*        }} key={index}>*/}
+                            {/*            {address.value}*/}
+                            {/*        </div>*/}
+                            {/*    }) : null}*/}
+                            {/*</AddressList>*/}
                             {to ? <div className="showAaddress">{to.value}</div> : ''}
                             {/*{toAddress? <div className="showAaddress">{toAddress.city}-{toAddress.street}-{toAddress.houseNumber}</div>:''}*/}
                         </InputsContainer>
@@ -269,23 +356,40 @@ function Booking(props) {
                             </div>
                         </InputsContainer>
                     </InputsContainer3>
+
                     {/*pickup... and return*/}
                     <InputsContainer2>
-
                         <InputsContainer position>
                             <div className="input-label">{props.t('book6')}</div>
                             <div className="input">
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <MobileDateTimePicker
+                                    <MobileDatePicker
                                         value={date}
                                         ampm={false}
                                         onChange={(newValue) => {
                                             setdate(newValue)
+                                            console.log(newValue)
+                                            console.log(typeof (newValue))
                                         }}/>
                                 </LocalizationProvider>
                             </div>
                         </InputsContainer>
+                        <Clock>
+                            <input
+                                type="number" value={hour}
+                                onChange={(event)=>handleHourChange(event,'from')} placeholder="Hour"
+                                min="0" max="23"
+                            />
+                            <span>:</span>
+                            <input
+                                type="number" value={minute}
+                                onChange={(event)=>handleMinuteChange(event,'from')} placeholder="Min"
+                                min="0" max="59"
+                            />
+                        </Clock>
+                    </InputsContainer2>
 
+                    <InputsContainer2>
                         <InputsContainer return={Return} position>
 
                             <div className="input-label">
@@ -298,7 +402,7 @@ function Booking(props) {
                             </div>
                             <div className="input">
                                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <MobileDateTimePicker
+                                    <MobileDatePicker
                                         value={date2}
                                         ampm={false}
                                         onChange={(newValue) => {
@@ -308,6 +412,19 @@ function Booking(props) {
                                 </LocalizationProvider>
                             </div>
                         </InputsContainer>
+                        <Clock return={Return}>
+                            <input
+                                type="number" value={hour2}
+                                onChange={(event)=>handleHourChange(event,'to')} placeholder="Hour"
+                                min="0" max="23"
+                            />
+                            <span>:</span>
+                            <input
+                                type="number" value={minute2}
+                                onChange={(event)=>handleMinuteChange(event,'to')} placeholder="Min"
+                                min="0" max="59"
+                            />
+                        </Clock>
 
                     </InputsContainer2>
                     {/*number of ...*/}
@@ -322,8 +439,18 @@ function Booking(props) {
                                 }}/>
                             </div>
                         </InputsContainer>
+                        {/*air port*/}
+                        <InputsContainer return={airport}>
+                            {/*<div className="input-label">{props.t('book8')}</div>*/}
+                            <div className="input-label">{props.t('flight number')}</div>
+                            <div className="input">
+                                <img alt={'icon'} src={require('../../public/air.png')}/>
+                                <input placeholder={'number'} onChange={(event) => {
+                                    setFlightNumber(event.target.value)
+                                }}/>
+                            </div>
+                        </InputsContainer>
 
-                        <InputsContainer/>
 
                     </InputsContainer2>
 
