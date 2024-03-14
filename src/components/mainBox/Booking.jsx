@@ -334,7 +334,7 @@ function Booking(props) {
                             {/*<div className="input-label">{props.t('book8')}</div>*/}
                             <div className="input-label">{props.t('flight number')}</div>
                             <div className="input">
-                                <img alt={'icon'} src={require('../../public/air.png')}/>
+                                <img alt={'icon'} src={require('../../public/air.png')} style={{"width":"20px"}}/>
                                 <input placeholder={'number'} onChange={(event) => {
                                     setFlightNumber(event.target.value)
                                 }}/>
