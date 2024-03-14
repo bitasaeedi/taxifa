@@ -14,6 +14,7 @@ function FillTheForm(props) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const {tripInfo,setResponse,loggageFlag} = useAppContext();
     const [loader,setLoader]=useState(false)
+
     function sendRequest(){
       setLoader(true)
         axios.post(`/trip`, tripInfo
@@ -39,7 +40,7 @@ function FillTheForm(props) {
                 Toast('your phone number is not true',false);
             }
             else{
-                Toast(error.response.data.message,false)
+                // Toast(error.response.data.message,false)
             }
             // Toast(error.response.data.message, false);
         });
@@ -69,7 +70,8 @@ function FillTheForm(props) {
 
             <SecondContainer type={'fill'}>
                 <h6>{props.t('form1')}</h6>
-                <FormsInput type={'email'} onChange={(event) => {
+                <FormsInput  onChange={(event) => {
+                    console.log(tripInfo)
                     setTripInfo((info) => ({
                         ...info,
                         passenger: {

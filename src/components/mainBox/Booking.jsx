@@ -21,36 +21,33 @@ import {AdapterDayjs} from '@mui/x-date-pickers/AdapterDayjs';
 import {MobileDatePicker} from '@mui/x-date-pickers/MobileDatePicker';
 import { StandaloneSearchBox, useJsApiLoader } from "@react-google-maps/api";
 const libraries = ['places'];
-const libraries2 = ['places'];
+
 function Booking(props) {
+
     const {setTripInfo, setLoggageFlag, setFinalAddress, finalAddress} = useAppContext();
     const [date, setdate] = useState(null);
     const [date2, setdate2] = useState(null);
     const [numberOfPassengar, setNumberOfPassengar] = useState();
-    const [fromContext, setFromContext] = useState();
-    const [toContext, setToContext] = useState();
-    const [inputType, setInputType] = useState(true)
     const [selectedOption, setSelectedOption] = useState(null);
     const [fromInput, setFromInput] = useState({value: '', context: ''});
     const [toInput, setToInput] = useState({value: '', context: ''});
-    const [fromAddress, setFromAddress] = useState();
-    const [toAddress, setToAddress] = useState();
     const [Return, setReturn] = useState(false);
     const [from, setFrom] = useState();
     const [to, setTo] = useState();
     const [fromHouseNumber, setFromHouseNumber] = useState("");
     const [toHouseNumber, setToHouseNumber] = useState("");
-    const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
-    const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
     const [hour, setHour] = useState('');
     const [minute, setMinute] = useState('');
     const [hour2, setHour2] = useState('');
     const [minute2, setMinute2] = useState('');
-    const [flightNumber,setFlightNumber]=useState()
+    const [flightNumber,setFlightNumber]=useState("")
     const [placeIdFrom,setPlaceIdFrom]=useState()
     const [placeIdTo,setPlaceIdTo]=useState()
     const [airport,setAirport]=useState(false)
-// saving time
+    const inputRef = useRef();
+    const inputRef2 = useRef();
+
+   // saving time
     const handleHourChange = (event,type) => {
         // Ensure hour is between 0 and 23
         let newHour = Math.min(Math.max(0, parseInt(event.target.value) || 0), 23);
@@ -74,10 +71,17 @@ function Booking(props) {
 
         }
     };
+
+    // radion buttons for luggage page
+    const handleRadioChange = (event) => {
+        setSelectedOption(event.target.value);
+
+    };
+
     //save travel info in context
     function handleSaveInfos() {
 
-        if (fromContext && toContext) {
+        if (placeIdFrom && placeIdTo) {
             setTripInfo((info) => ({
                 ...info,
                 origin: {
@@ -96,7 +100,7 @@ function Booking(props) {
                 },
                 return: {
                     active:Return,
-                    time:hour2+':'+minute2,
+                    time:Return?hour2+':'+minute2:'',
                     date:date2
                 },
                 flight_number:flightNumber,
@@ -106,126 +110,8 @@ function Booking(props) {
 
     }
 
-    // radion buttons for luggage page
-    const handleRadioChange = (event) => {
-        setSelectedOption(event.target.value);
-
-    };
-
-    //save inputs of destination and origin
-    function handleInputChange(type, event) {//save input value
-
-        if (event.target.value===''&&type === 'from') {
-            setFromInput({value: '', context: ''})
-            setFrom(null)
-            setFromAddress(null)
-        } else if(event.target.value===''&&type === 'to') {
-            setToInput({value: '', context: ''})
-            setTo(null)
-            setToAddress(null)
-        }
-        else if (type === 'from') {
-            setFromInput({...fromInput,value: event.target.value});
-            setInputType(true)
-        } else {
-            setToInput({...toInput,value: event.target.value})
-            setInputType(false)
-        }
-
-    }
-
-    // remove address when inputs are empty
-    function handleDeleteAddress(type, event) {
-        if (type === 'from' && event.key === 'Backspace') {
-            setFrom(null)
-            setFromAddress(null)
-        } else if (type === 'to' && event.key === 'Backspace') {
-            setTo(null)
-            setToAddress(null)
-
-        }
-    }
-
-    //get list of address that are recommend
-    function sendRequest(value, type) {
-        const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}/${value.value}`
-        console.log(URL)
-        axios.get(URL
-        ).then(function (response) {
-                if (type === 'from') {
-                    setFromAddress(response.data.body)
-
-                } else {
-                    setToAddress(response.data.body)
-                }
-            }
-        ).catch(function (error) {
-            console.error('Error:', error);
-            if (error.response && value.value !== "") {
-                Toast('This address does not exist', false)
-            }
-        });
-
-    }
-
-    // after that user click on an address
-    function sendContext(value, type, inputValue) {
-        console.log("value click: ", value)
-        if (value.precision === 'Address') {
-            console.log("this is Address API")
-            axios.get(`/trip/address/details/${value.context}`
-            ).then(function (response) {
-                    let res = response.data.body.address;
-
-                    if (type === 'from') {
-                        console.log('now')
-                        setFromContext(response.data.body)
-                        setFinalAddress({
-                            ...finalAddress, destination: res.locality +" "+ res.street + " "+res.postcode +" "+ res.building});
-                    } else {
-                        setFinalAddress({...finalAddress, origin: res.locality + " "+res.street + " "+res.postcode + " "+res.building});
-                        setToContext(response.data.body)
-                    }
-                }
-            ).catch(function (error) {
-                console.error('Error:', error);
-                if (error.response) {
-                    Toast('This address does not exist', false)
-                }
-            });
-        } else {
-            console.log(toInput, ': ', value.value)
-            type === 'from' ? setFromInput({
-                value: value.value,
-                context: value.context
-            }) : setToInput({value: value.value, context: value.context});
-
-        }
-
-    }
-
-    // send request when user write in inputs after 1000ns
-    // useEffect(() => {
-    //
-    //     const timer = setTimeout(() => {
-    //         if (fromInput && inputType) {
-    //             throttledSendRequest(fromInput);
-    //         }
-    //     }, 1000);
-    //     const timer2 = setTimeout(() => {
-    //         if (toInput && !inputType) {
-    //             throttledSendRequest2(toInput);
-    //         }
-    //     }, 1000);
-    //     return () => {
-    //         clearTimeout(timer);
-    //         clearTimeout(timer2);
-    //     }
-    // }, [fromInput, toInput]);
-
     //google map
-    const inputRef = useRef();
-    const inputRef2 = useRef();
+
     const { isLoaded, loadError } = useJsApiLoader({
         googleMapsApiKey: 'AIzaSyAFizMTk39puEPb3hBCQonn5kaY0lAveuU',
         libraries
@@ -235,21 +121,25 @@ function Booking(props) {
     //     libraries
     // });
 
+    //save origin
     const handlePlaceChanged = () => {
         const [ place ] = inputRef.current.getPlaces();
         if(place) {
-            console.log(place.types[0]);
+            console.log(place)
             setPlaceIdFrom(place.place_id);
             setFrom({value:place.name})
             place.types[0]==='airport'?setAirport(true):setAirport(false)
+           setFinalAddress({...finalAddress, destination: place.formatted_address});
+
         }
     }
+    //save destination
     const handlePlaceChanged2 = () => {
         const [ place2 ] = inputRef2.current.getPlaces();
         if(place2) {
-            console.log(place2)
             setPlaceIdTo(place2.place_id)
             setTo({value:place2.name})
+            setFinalAddress({...finalAddress, origin: place2.formatted_address});
         }
     }
     return (
@@ -497,3 +387,120 @@ function Booking(props) {
 }
 
 export default Booking;
+// const [fromContext, setFromContext] = useState();
+// const [toContext, setToContext] = useState();
+// const [inputType, setInputType] = useState(true)
+// const [fromAddress, setFromAddress] = useState();
+// const [toAddress, setToAddress] = useState();
+// const throttledSendRequest = throttle(() => sendRequest(fromInput, 'from'), 1000);
+// const throttledSendRequest2 = throttle(() => sendRequest(toInput, 'to'), 1000);
+//save inputs of destination and origin
+// function handleInputChange(type, event) {//save input value
+//
+//     if (event.target.value===''&&type === 'from') {
+//         setFromInput({value: '', context: ''})
+//         setFrom(null)
+//         setFromAddress(null)
+//     } else if(event.target.value===''&&type === 'to') {
+//         setToInput({value: '', context: ''})
+//         setTo(null)
+//         setToAddress(null)
+//     }
+//     else if (type === 'from') {
+//         setFromInput({...fromInput,value: event.target.value});
+//         setInputType(true)
+//     } else {
+//         setToInput({...toInput,value: event.target.value})
+//         setInputType(false)
+//     }
+//
+// }
+
+// remove address when inputs are empty
+// function handleDeleteAddress(type, event) {
+//     if (type === 'from' && event.key === 'Backspace') {
+//         setFrom(null)
+//         setFromAddress(null)
+//     } else if (type === 'to' && event.key === 'Backspace') {
+//         setTo(null)
+//         setToAddress(null)
+//
+//     }
+// }
+
+//get list of address that are recommend
+// function sendRequest(value, type) {
+//     const URL = value.context === '' ? `/trip/autocomplete/post-code/${value.value}` : `/trip/autocomplete/post-code/${value.context}/${value.value}`
+//     console.log(URL)
+//     axios.get(URL
+//     ).then(function (response) {
+//             if (type === 'from') {
+//                 setFromAddress(response.data.body)
+//
+//             } else {
+//                 setToAddress(response.data.body)
+//             }
+//         }
+//     ).catch(function (error) {
+//         console.error('Error:', error);
+//         if (error.response && value.value !== "") {
+//             Toast('This address does not exist', false)
+//         }
+//     });
+//
+// }
+
+// after that user click on an address
+// function sendContext(value, type, inputValue) {
+//     console.log("value click: ", value)
+//     if (value.precision === 'Address') {
+//         console.log("this is Address API")
+//         axios.get(`/trip/address/details/${value.context}`
+//         ).then(function (response) {
+//                 let res = response.data.body.address;
+//
+//                 if (type === 'from') {
+//                     console.log('now')
+//                     setFromContext(response.data.body)
+//                     setFinalAddress({
+//                         ...finalAddress, destination: res.locality +" "+ res.street + " "+res.postcode +" "+ res.building});
+//                 } else {
+//                     setFinalAddress({...finalAddress, origin: res.locality + " "+res.street + " "+res.postcode + " "+res.building});
+//                     setToContext(response.data.body)
+//                 }
+//             }
+//         ).catch(function (error) {
+//             console.error('Error:', error);
+//             if (error.response) {
+//                 Toast('This address does not exist', false)
+//             }
+//         });
+//     } else {
+//         console.log(toInput, ': ', value.value)
+//         type === 'from' ? setFromInput({
+//             value: value.value,
+//             context: value.context
+//         }) : setToInput({value: value.value, context: value.context});
+//
+//     }
+//
+// }
+
+// send request when user write in inputs after 1000ns
+// useEffect(() => {
+//
+//     const timer = setTimeout(() => {
+//         if (fromInput && inputType) {
+//             throttledSendRequest(fromInput);
+//         }
+//     }, 1000);
+//     const timer2 = setTimeout(() => {
+//         if (toInput && !inputType) {
+//             throttledSendRequest2(toInput);
+//         }
+//     }, 1000);
+//     return () => {
+//         clearTimeout(timer);
+//         clearTimeout(timer2);
+//     }
+// }, [fromInput, toInput]);
