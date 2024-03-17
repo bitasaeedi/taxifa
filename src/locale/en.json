@@ -95,7 +95,8 @@
     "info4": "Payment Method",
     "info5": "Person",
     "cash": "later(Cash...)",
-    "flight number": "flight number"
+    "flight number": "flight number",
+    "origin country": "origin country"
 
   }
 }

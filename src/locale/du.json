@@ -94,6 +94,7 @@
     "info4": "Betalingsmiddel",
     "info5": "Persoon",
     "cash": "later(Contant...)",
-    "flight number": "vluchtnummer"
+    "flight number": "vluchtnummer",
+    "origin country": "land van herkomst"
   }
 }

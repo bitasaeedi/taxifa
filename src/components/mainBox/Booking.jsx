@@ -44,6 +44,7 @@ function Booking(props) {
     const [placeIdFrom,setPlaceIdFrom]=useState()
     const [placeIdTo,setPlaceIdTo]=useState()
     const [airport,setAirport]=useState(false)
+    const [originCountry,setOriginCountry]=useState("")
     const inputRef = useRef();
     const inputRef2 = useRef();
 
@@ -104,7 +105,9 @@ function Booking(props) {
                     date:date2
                 },
                 flight_number:flightNumber,
-                number_of_passengers: numberOfPassengar
+                number_of_passengers: numberOfPassengar,
+                origin_country:originCountry
+
             }));
         }
 
@@ -128,7 +131,9 @@ function Booking(props) {
             console.log(place)
             setPlaceIdFrom(place.place_id);
             setFrom({value:place.name})
-            place.types[0]==='airport'?setAirport(true):setAirport(false)
+            if( place.types[0]==='airport'){
+                setAirport(true)
+            }
            setFinalAddress({...finalAddress, destination: place.formatted_address});
 
         }
@@ -139,9 +144,13 @@ function Booking(props) {
         if(place2) {
             setPlaceIdTo(place2.place_id)
             setTo({value:place2.name})
+            if( place2.types[0]==='airport'){
+                setAirport(true)
+            }
             setFinalAddress({...finalAddress, origin: place2.formatted_address});
         }
     }
+
     return (
         <>
             <ToastContainer/>
@@ -329,6 +338,11 @@ function Booking(props) {
                                 }}/>
                             </div>
                         </InputsContainer>
+                        <InputsContainer/>
+
+
+                    </InputsContainer2>
+                    <InputsContainer2>
                         {/*air port*/}
                         <InputsContainer return={airport}>
                             {/*<div className="input-label">{props.t('book8')}</div>*/}
@@ -337,13 +351,23 @@ function Booking(props) {
                                 <img alt={'icon'} src={require('../../public/air.png')} style={{"width":"20px"}}/>
                                 <input placeholder={'number'} onChange={(event) => {
                                     setFlightNumber(event.target.value)
-                                }}/>
+                                }}
+                                       disabled={!airport}/>
                             </div>
                         </InputsContainer>
-
-
+                    {/*  origin country  */}
+                        <InputsContainer return={airport}>
+                            {/*<div className="input-label">{props.t('book8')}</div>*/}
+                            <div className="input-label">{props.t('origin country')}</div>
+                            <div className="input">
+                                <img alt={'icon'} src={require('../../public/country.png')} style={{"width":"20px"}}/>
+                                <input placeholder={'number'} onChange={(event) => {
+                                   setOriginCountry(event.target.value)
+                                }}
+                                       disabled={!airport}/>
+                            </div>
+                        </InputsContainer>
                     </InputsContainer2>
-
                     <Luggage>
                         <img alt={'icon'} src={require('../../public/Work.png')}/>
                         <p>{props.t('book9')}</p>
